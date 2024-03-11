@@ -1,0 +1,11 @@
+server:
+    port: 80
+logging:
+    pattern.console: false
+    level:
+        root: WARN
+    file:
+        name: /tmp/archivo.log
+        max-size: 1MB
+        max-history: 10
+        total-size-cap: 10MB
