@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/ColsultaHorario.css">
+    
+    <title>Consulta Horarios</title>
+</head>
+<body>
+    <header class="header">
+        <div class="logo-header">
+            <a href=""><img src="img/logo.png" alt="logo"></a>
+        </div>
+        <div class="nav-menu">
+            <input type="checkbox" id="check">
+            <label for="check" class="checkbtn">
+                <i class="menu-icon"><img src="img/menuhamburguesa.svg" alt="menu"></i>
+            </label>
+            <ul>
+                <li><a href="admin.html">Administración</a></li>
+                <li><a href="docentes.html">Profesores</a></li>
+                <li><a href="alumnos.html">Alumnos</a></li>
+                <li><a href="horarios.html">Horarios</a></li>
+                <li><a href="convivencia.html">Convivencia</a></li>
+                <li><a href="planos.html">Mapas</a></li>
+            </ul>
+        </div>
+   </header> 
+    <div id="Horario">
+        <div id="horario-seleccionar-Profesor">
+            <form action="#">
+                <label for="Profesores">Profesores</label>
+                <p></p>
+                <select name="Profesores-Horarios" id="Profesores">
+                  <option value="Francisco">Francisco Manuel Benitez Chico </option>
+                  <option value="Vicente">Vicente Serrano Martínez </option>
+                  <option value="Jose">Jose Antonio Sánchez Garcia</option>
+                  <option value="Carlos">Carlos Cano Ladera</option>
+                  <option value="Raquel">Raquel Molina Mesa</option>
+                </select>
+                <p></p>
+                <input type="submit" value="Enviar" />
+          </form>
+        </div>
+        
+        <div id="horario-todos-Profesores">
+            <p>Horario de todos los Profesores</p>
+            <form action="">
+                <button id="button-Horario-Profesores"> Ver </button>
+            </form>
+        </div>
+        
+        <div id="horario-seleccionar-grupo">
+            <form action="#">
+                <label for="Grupos">Grupos</label>
+                <p></p>
+                <select name="Grupos-Horarios" id="Grupos">
+                  <option value="1ESO">1º ESO </option>
+                  <option value="2ESO">2º ESO </option>
+                  <option value="3ESO">3º ESO </option>
+                  <option value="4ESO">4º ESO </option>
+                  <option value="1BACH">1º BACH </option>
+                  <option value="2Bach">2º BACH </option>
+                  <option value="1DAM">1º DAM </option>
+                  <option value="1DAW">1º DAW </option>
+                  <option value="2DAM">2º DAM </option>
+                  <option value="2DAW">2º DAW </option>
+                </select>
+                <p></p>
+                <input type="submit" value="Enviar" />
+          </form>
+        </div>
+        
+        <div id="horario-todos-grupos">
+            <p>Horario de todos los Grupos</p>
+            <form action="">
+                <button id="button-Horario-Grupo"> Ver </button>
+            </form>
+        </div>
+
+
+    </div>
+    <div id="horarios-container">
+    <embed type="text/html" src="img/Horario.pdf"  width="100%" height="1000px">
+    </div>
+</body>
+</html>

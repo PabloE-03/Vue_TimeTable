@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- ESTA ES LA REFERENCIA A LA HOJA DE ESTILOS DE LA BARRA DE NAVEGACIÓN. IMPORTANTE COPIARLA TAMBIEN-->
+    <link rel="stylesheet" href="css/navbar.css">
+</head>
+<body>
+
+
+
+    <!-- COPIAR DESDE AQUI -->
+   <header class="header">
+        <div class="logo-header">
+            <a href=""><img src="img/logo.png" alt="logo"></a>
+        </div>
+        <div class="nav-menu">
+            <input type="checkbox" id="check">
+            <label for="check" class="checkbtn">
+                <i class="menu-icon"><img src="img/menuhamburguesa.svg" alt="menu"></i>
+            </label>
+            <ul>
+                <li><a href="admin.html">Administración</a></li>
+                <li><a href="docentes.html">Profesores</a></li>
+                <li><a href="alumnos.html">Alumnos</a></li>
+                <li><a href="horarios.html">Horarios</a></li>
+                <li><a href="convivencia.html">Convivencia</a></li>
+                <li><a href="planos.html">Mapas</a></li>
+            </ul>
+        </div>
+   </header> 
+    <!-- COPIAR HASTA AQUI -->
+
+
+
+
+</body>
+</html>

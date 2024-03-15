@@ -1,0 +1,71 @@
+/*Resalta el boton de la barra de navegación de la sección para las migajas*/
+.nav-menu li:nth-child(4){
+    background-color: rgb(222, 252, 253) !important;
+    border-color: rgb(0, 0, 0);
+}
+/*Resalta el boton de la barra de navegación de la sección para las migajas*/
+.nav-menu li:nth-child(4) a{
+    color: rgb(34, 46, 83) !important;
+    font-weight: bold !important;
+}
+
+#Horario{
+
+    margin-top: 5%;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+
+}
+
+#horario-seleccionar-Profesor{
+
+    width: 20%;
+    text-align: center;
+    border: 2px solid black;
+    min-width: 250px;
+    max-width: 100%;
+    margin: 5px;
+
+}
+
+#horario-todos-Profesores{
+
+    width: 20%;
+    text-align: center;
+    border: 2px solid black;
+    min-width: 225px;
+    max-width: 100%;
+    margin: 5px;
+
+}
+
+#horario-seleccionar-grupo{
+
+    width: 20%;
+    text-align: center;
+    border: 2px solid black;
+    min-width: 100px;
+    max-width: 100%;
+    margin: 5px;
+
+}
+
+#horario-todos-grupos{
+    
+    width: 20%;
+    text-align: center;
+    border: 2px solid black;
+    min-width: 150px;
+    max-width: 100%;
+    margin: 5px;
+
+}
+
+#horarios-container{
+    min-height: 100%;
+    text-align: center;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 5%;
+}

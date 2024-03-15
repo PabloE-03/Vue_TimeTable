@@ -1,0 +1,211 @@
+/*Resalta el boton de la barra de navegación de la sección para las migajas*/
+.nav-menu li:nth-child(3){
+    background-color: rgb(222, 252, 253) !important;
+    border-color: rgb(0, 0, 0);
+}
+/*Resalta el boton de la barra de navegación de la sección para las migajas*/
+.nav-menu li:nth-child(3) a{
+    color: rgb(34, 46, 83) !important;
+    font-weight: bold !important;
+}
+
+
+.selectores{
+    display: flex;
+    justify-content: space-around;
+    margin: 2em;
+}
+
+
+.container-table-info-alumnos{
+    max-width: 900px;
+    border: 1px solid rgb(0, 70, 128);
+    background-color: beige;
+    padding: 15px;
+    overflow: auto;
+    margin: auto;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+
+
+/*FIN INFO ALUMNOS*/
+
+/*COMIENZO SECCION LAVABOS*/
+
+.venatanaActualizada{
+    background-color: white;
+}
+*{
+    box-sizing:border-box;
+    text-align: center;
+}
+
+body{
+   margin:40px;
+   font-family:'Arial';
+   margin:0;
+   background-color: rgb(230, 253, 253);
+}
+
+.logo{
+    display:flex;
+    align-items: center;
+}
+
+.logo img{
+   height:80px;
+   margin-right: 10px;
+   border-radius: 50%;
+}
+
+nav a {
+    font-weight: 600;
+    padding-right: 10px;
+}
+
+nav a:hover {
+    color:white;
+}
+
+@media (max-width:700px){
+    header {
+        flex-direction: column; 
+    }
+
+    nav{
+        padding:10px 0px;
+    }
+}
+
+.configuration-header{
+    padding: 15px; 
+}
+
+.browse{
+    padding: 5px; 
+    display: inline-flex;
+} 
+
+input{
+    border-radius: 5px;
+    border-style: solid;
+    border-color: rgb(146, 173, 177);
+} 
+
+select{
+    border-radius: 5px;
+    border-style: solid;
+    border-color: rgb(146, 173, 177);
+} 
+
+.table-title{
+    color:rgb(28, 77, 117);
+    text-align: center;
+}
+
+.table-record-01{
+    max-width: 900px;
+    border: 1px solid rgb(0, 128, 128);
+    background-color: beige;
+    padding: 15px;
+    overflow: auto;
+    margin: auto;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.table-record-02{
+    max-width: 900px;
+    border: 1px solid rgb(0, 128, 128);
+    background-color: beige;
+    padding: 15px;
+    overflow: auto;
+    margin: auto;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.table-record-03{
+    max-width: 900px;
+    border: 1px solid rgb(0, 128, 128);
+    background-color: beige;
+    padding: 15px;
+    overflow: auto;
+    margin: auto;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+table{
+    width: 100%;
+    font-size: 13px;
+    color:rgb(68, 68, 68);
+    white-space: nowrap;
+    border-collapse:collapse;
+}
+
+table>thead{
+    background-color: rgb(116, 173, 190);
+    color:white;
+}
+
+table>thead th{
+    padding: 15px;
+}
+
+table th,table td{
+    border:1px solid rgb(29, 28, 28);
+    padding: 10px 15px;
+}
+
+table>body>tr>td>img{
+    display:inline-block;
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius:50%;
+    border:4px solid white;
+    box-shadow: 0 2px 6px rgb(29, 28, 28);
+}
+
+.action-btn{
+    display: flex;
+    justify-content: center;
+    gap:10px;
+}
+
+.action-btn>a{
+    text-decoration: none;
+    color: rgb(29, 28, 28);
+    background: white;
+    border: 1px solid rgb(0, 109, 128);
+    display: inline-block;
+    padding:7px 20px;
+    font-weight: bold;
+    border-radius:10px;
+    transition: 0.3s ease-in-out;
+}
+
+.action-btn>a:nth-child(1){
+    border-color:rgb(93, 143, 207);
+}
+
+.action-btn>a:nth-child(2){
+    border-color:rgb(131, 19, 19);
+}
+
+.configuration-header:hover{
+    transition: 0.5s ease-in-out;
+    filter:drop-shadow(0px 2px 6px rgb(97, 132, 173));
+}
+
+table>tbody>tr{
+    background-color: white;
+    transition: 0.3s ease-in-out;
+}
+
+table>tbody>tr:hover{
+   filter:drop-shadow(0px 2px 6px rgb(4, 144, 163));
+}

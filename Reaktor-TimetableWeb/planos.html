@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Planos del centro - Reaktor</title>
+<link rel="stylesheet" href="css/map-style.css">
+<link rel="stylesheet" href="css/navbar.css">
+
+<style> </style>
+
+</head>
+
+<body>
+    <!-- GUARRADA ABSURDA PARA DEMO - BORRAR LUEGO -->
+    <!-- Explicación para Pablo: Debido a la falta de tiempo no he podido implementar ningun tipo de cuadro dinamico que se rellene con valores mediante funciones
+    asi que me he visto obligado a hacer esta tremenda guarrada de poner dos cuadros de ejemplo con valores fijos que según el aula a la que se hace hover
+    aparecen o desaparecen. Estos puedes borrarlos e implementar un cuadro como veas mas deseable basandote en los endpoints que devuelven el listado de alumnos de un aula
+    en un momento determinado. No quería soltarte este marrón pero estamos cortos de tiempo y en semana de examenes, asi que disculpa la guarrada. -->
+    <div id="cuadro">
+        <span style="color: black"> 
+            <hr style="width:100%;text-align:left;margin-left:0">
+        <p><strong>Alumnos en clase</strong></p>
+        <hr style="width:100%;text-align:left;margin-left:0; color:black !important;">
+        </span>
+        <p>Aitor Mentas Fuertes</p>
+        <p>Alex Cremento</p>
+        <p>Ana Tomía</p>
+        <p>Armando Bronca Segura</p>
+    </div>
+    
+    <div id="cuadro2">
+        <span style="color: black"> 
+            <hr style="width:100%;text-align:left;margin-left:0">
+        <p><strong>Alumnos en clase</strong></p>
+        <hr style="width:100%;text-align:left;margin-left:0; color:black !important;">
+        </span>
+        <p>Armando Bronca Segura</p>
+        <p>Ana Tomía</p>
+        <p>Michael Rosal</p>
+        <p>Alex Cremento</p>
+        <p>Aitor Mentas Fuertes</p>
+        <br>
+        <hr>
+        <p style="color: rgb(163, 40, 9);"><strong>Alumnos en el lavabo</strong></p>
+        <hr>
+        <p>Suma Incon Tinentia</p>
+    </div>
+    <!-- GUARRADA ABSURDA PARA DEMO - BORRAR LUEGO -->
+    
+    <header class="header">
+        <div class="logo-header">
+            <a href=""><img src="img/logo.png" alt="logo"></a>
+        </div>
+        <div class="nav-menu">
+            <input type="checkbox" id="check">
+            <label for="check" class="checkbtn">
+                <i class="menu-icon"><img src="img/menuhamburguesa.svg" alt="menu"></i>
+            </label>
+            <ul>
+                <li><a href="admin.html">Administración</a></li>
+                <li><a href="docentes.html">Profesores</a></li>
+                <li><a href="alumnos.html">Alumnos</a></li>
+                <li><a href="horarios.html">Horarios</a></li>
+                <li><a href="convivencia.html">Convivencia</a></li>
+                <li><a href="planos.html">Mapas</a></li>
+            </ul>
+        </div>
+   </header> 
+    <div id="djg-main-box">
+        <div id="panel">
+
+            <div id="panel-selector">
+                <!-- PARA PABLO DE SEGUNDO -->
+                <!-- Este formulario es un placeholder. Va alimentado por un endpoint que le dice que cursos existen en el sistema -->
+                <!-- La idea aqui imagino que es identificar las aulas y según el curso seleccionado, marcarlas en el plano con un efecto de colores o algo-->
+                <!-- Disculpad el desorden, si puedo hacer algo avisadme, soy David Jason de primero. -->
+                <form action="">
+                    <label for="selector-curso">Localizador de cursos:</label>
+                    <select name="selector-curso" id="selector-curso">
+                        <option value="0">Seleccionar</option>
+                        <option value="aula01">1º FPB</option>
+                        <option value="aula03">2º FPB</option>
+                        <option value="aula05">1º DAM</option>
+                        <option value="aula07">2º DAM</option>
+                        <option value="aula02no">3º DIVER </option>
+                        <option value="aula02su">4º DIVER </option>
+                        <option value="aula09">Aula de Plástica </option>
+                        <option value="aula011">1º BCS-A </option>
+                        <option value="aula109">1º ESO-C </option>
+                        <option value="aula209">2º ESO-C </option>
+                    </select>           
+                </form>
+            </div>
+
+            <!-- INICIO Botones para seleccion de planta y rotacion automatica  -->
+            <div id="contenedor-botones-rotacion">
+
+                <p class="titulo-djg" >Mostrar planta.</p>
+                <center>
+                <!-- Botones de selección manual de planta -->
+                <div id="contenedor-botones-plantas"> 
+                    <button id="boton-planta-baja">Planta<br/>baja</button>
+                    <button id="boton-planta-primera">Planta<br/>primera</button>
+                    <button id="boton-planta-segunda">Planta<br/>segunda</button>
+                </div>
+                <!-- este div solo sirve para reflejar al usuario el estado de la rotación, por defecto desactivada-->
+                <div id="indicador">Rotacion: Desactivada</div>
+
+                <!-- Botones de rotacion automatica -->
+                <button id="boton-autorotacion">03s</button>
+                <button id="rotacion-5">05s</button>
+                <button id="rotacion-10">10s</button>
+                <button id="rotacion-15">15s</button>
+                <button id="rotacion-20">20s</button>
+                <button id="rotacion-30">30s</button></center>
+            </div>
+            <!-- FINAL  Botones para seleccion de planta y rotacion automatica  -->
+
+            <!-- INICIO  Botones para seleccion de tamaño caja mapa  -->
+            <div id="contenedor-botones-dimensiones">
+            <p  class="titulo-djg">Configurar tamaño del plano.</p>
+                <div id="contenedor-columnas-dimensiones">
+                    <div class="columna-dimensiones">
+                        <button id="mapa-tamano-1">662px * 936px</button>
+                        <button id="mapa-tamano-2">777px * 1100px</button>
+                        <button id="mapa-tamano-3">827px * 1170px</button>     
+                    </div>
+                    <div class="columna-dimensiones">
+                        <button id="mapa-tamano-4">910px * 1287px</button>
+                        <button id="mapa-tamano-5">992px * 1404px</button>
+                        <button id="mapa-tamano-6">1984px * 2808px</button>        
+                    </div>
+                </div>
+                <a href="planos.html"><button id="restablecer">Restablecer</button></a>
+            </div>
+            <!-- FIN  Botones para seleccion de tamaño caja mapa  -->
+
+
+
+            <!-- INICIO  Menu desplegable para seleccion de tamaño caja mapa  -->
+            <div id="conenetdor-desplegable-dimensiones">
+                <label for="selector-dimensiones" class="titulo-djg">Dimensiones plano.<br/></label>
+                <select name="selector-dimensiones" id="selector-dimensiones">
+                    <!-- Mucho ojo con estos valores, son multiplos de la resolución de las imagenes de los planos
+                    Es necesario que respeten al 100% la proporción de las imagenes en multiplos porque de lo contrario los 
+                    divs posicionados dentro del contenedor padre de los planos se le va la flapa y no tomarán la posicion correcta.
+                    NOTA: Estos valores están tomados de la variable ROOT de CSS y aplicados mediante una función javascript -->
+                    <option value="res1">662px * 936px</option>
+                    <option value="res2">777px * 1100px</option>
+                    <option value="res3">827px * 1170px</option>
+                    <option value="res4">910px * 1287px</option>
+                    <option value="res5">992px * 1404px</option>
+                    <option value="res6">1984px * 2808px</option>
+                </select>
+                <!-- Esto es un boton que recarga la página, la idea es que al pinchar en el boton se recargue la página 
+                    reactivando los mediaqueries que dan valor a la variable que define el tamaño de los mapas.-->
+                <a href="planos.html"><button id="restablecer">Restablecer</button></a>
+            </div>
+            <!-- FIN  Menu desplegable para seleccion de tamaño caja mapa  -->
+
+            <!-- INICIO  Caja donde se deberá renderizar la información recuperada mediante los endpoints y back-end -->
+            <div id="contenedor-info-box-endpoints">
+            <p class="titulo-djg">Información del aula.</p>
+                <p><span> Seleccione un aula. </span> </p>
+
+            </div>
+            <!-- FIN  Caja donde se deberá renderizar la información recuperada mediante los endpoints y back-end -->
+        </div>
+        
+        <!-- INICIO Sección Mapas del centro -->
+        <div class="contenedor">       
+          
+                <div id="planta-baja" class="caja-mapa">
+                    <div id="aula-2ndo-Guia"></div>
+                    <div id="aula-1ero-Guia-A"></div>
+                    <div id="aula-1ero-Guia-B"></div>
+                    <div id="gimnasio"></div>
+                    <div id="pista-padel"></div>
+                    <div id="aula0-1"></div>
+                    <div id="aula0-2-sur"></div>
+                    <div id="aula0-2-norte"></div>
+                    <div id="aula0-3"></div>
+                    <div id="aula0-4"></div> <!-- Esta sin usar (?) borrar si apetecec -->
+                    <div id="aula0-5"></div>
+                    <div id="aula0-7"></div>
+                    <div id="aula0-9"></div>
+                    <div id="aula0-11"></div>
+                </div>   
+
+                <div id="planta-primera" class="caja-mapa">
+                    <div id="aula1-11"></div>
+                    <div id="aula1-9"></div>
+                    <div id="aula1-13"></div>
+                    <div id="aula1-7"></div>
+                    <div id="aula1-15"></div>
+                    <div id="aula1-5"></div>
+                    <div id="aula1-17"></div>
+                    <div id="aula1-3"></div>
+                    <div id="aula1-19"></div>
+                    <div id="aula1-1"></div>
+                    <div id="aula1-2"></div>
+                    <div id="aula1-12"></div>
+                    <div id="aula1-4"></div>
+                    <div id="aula1-10"></div>
+                    <div id="aula1-6"></div>
+                    <div id="aula1-8"></div>
+                </div>
+
+                <div id="planta-segunda" class=" caja-mapa">
+                    <div id="aula2-11"></div>
+                    <div id="aula2-13"></div>
+                    <div id="aula2-9"></div>
+                    <div id="aula2-15"></div>
+                    <div id="aula2-7"></div>
+                    <div id="aula2-17"></div>
+                    <div id="aula2-5"></div>
+                    <div id="aula2-19"></div>
+                    <div id="aula2-3"></div>
+                    <div id="aula2-21"></div>
+                    <div id="aula2-23"></div>
+                    <div id="aula2-1"></div>
+                    <div id="aula2-2"></div>
+                    <div id="aula2-12"></div>
+                    <div id="aula2-4"></div>
+                    <div id="aula2-10"></div>
+                    <div id="aula2-6"></div>
+                    <div id="aula2-8"></div>
+                </div>
+        </div>
+        <!-- FINAL Sección Mapas del centro -->
+
+        <!-- Importación javascript David Jason Gianmoena para que funcionen los controles de los mapas etc.. -->
+        <!-- Importante: Esta importación debe residir en la sección final del docuemnto html para que funcione adecuadamente -->
+    </div>
+    <script src="js/planos.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,99 @@
+<html>
+    <!DOCTYPE html>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="="width=devidce-width, initial-scale="1.0"/>
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/sec-convivencia.css"/>
+    
+    <title> Sección de convivencia</title>
+</head>
+<body>
+    <header class="header">
+        <div class="logo-header">
+            <a href=""><img src="img/logo.png" alt="logo"></a>
+        </div>
+        <div class="nav-menu">
+            <input type="checkbox" id="check">
+            <label for="check" class="checkbtn">
+                <i class="menu-icon"><img src="img/menuhamburguesa.svg" alt="menu"></i>
+            </label>
+            <ul>
+                <li><a href="admin.html">Administración</a></li>
+                <li><a href="docentes.html">Profesores</a></li>
+                <li><a href="alumnos.html">Alumnos</a></li>
+                <li><a href="horarios.html">Horarios</a></li>
+                <li><a href="convivencia.html">Convivencia</a></li>
+                <li><a href="planos.html">Mapas</a></li>
+            </ul>
+        </div>
+   </header> 
+
+    <div class="opcion"> 
+
+        <div>
+            <h2>Docente actualmente de guardia: <span id="docenteguardia"><!--Aqui se integra el maestro de guardia en ese momento --> Valor automatico. </span></h2>
+        </div>
+
+        <div class="contenido">
+
+            <div class="clases"> <!--Boton donde seleccionar el curso del alumno -->
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>Cursos</option>
+                    <option value="1">1ºESO</option>
+                    <option value="2">2ºESO</option>
+                    <option value="3">3ºESO</option>
+                    <option value="4">4ºESO</option>
+                    <option value="5">1ºBachillerato</option>
+                    <option value="6">2ºBachillerato</option>
+                </select>
+            </div>
+    
+            <div class="Alumnos"><!--Boton donde seleccionar el alumno, dependiendo del curso seleccionado -->
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>Nombre y apellidos alumnos</option>
+                    <option value="1">Alumno1</option>
+                    <option value="2">Alumno2</option>
+                    <option value="3">Alumno3</option>
+                    <option value="4">Alumno4</option>
+                    <option value="5">Alumno5</option>
+                    <option value="6">Alumno6</option>
+                    <option value="7">Alumno7</option>
+                    <option value="8">Alumno8</option>
+                </select>
+            </div>
+    
+            <div class="Puntos"><!--Boton donde seleccionar la puntuación que merece el alumno-->
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>Puntos</option>
+                    <option value="1">-5</option>
+                    <option value="2">-4</option>
+                    <option value="3">-3</option>
+                    <option value="4">-2</option>
+                    <option value="5">-1</option>
+                    <option value="6">0</option>
+                    <option value="7">1</option>
+                    <option value="8">2</option>
+                    <option value="8">3</option>
+                    <option value="8">4</option>
+                    <option value="8">5</option>
+                </select>
+            </div>
+    
+            <div>
+                <button type="button" class="botonaplicar">Aplicar Puntuación</button> 
+            </div>
+    
+        </div>
+    </div>   
+
+<div id="contenedorPDF">
+    <iframe src="img/Puntos_Plan_De_Convivencia.pdf" class="iframe" ></iframe>
+</div>
+
+   
+
+            
+    </body>
+</html>

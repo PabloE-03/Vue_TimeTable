@@ -1,0 +1,108 @@
+/*Resalta el boton de la barra de navegación de la sección para las migajas*/
+.nav-menu li:nth-child(5){
+    background-color: rgb(222, 252, 253) !important;
+    border-color: rgb(0, 0, 0);
+}
+/*Resalta el boton de la barra de navegación de la sección para las migajas*/
+.nav-menu li:nth-child(5) a{
+    color: rgb(34, 46, 83) !important;
+    font-weight: bold !important;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+
+body{
+    background-color: skyblue;
+}
+
+.Contenido {
+    background-color: rgb(31, 155, 203);    
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.botonaplicar:hover{
+    color: purple;
+    font-weight: bo;
+    background-color: rgba(226, 131, 43, 0.411);
+}
+
+.botonaplicar{
+    margin-top: 0%;
+    max-width: min-content;
+    font-size: 90%;
+    font-style: italic;
+    border-color: red;
+    background-color: white;
+    padding: 3px;
+}
+
+#contenedorPDF{
+    margin-top: 10px;
+    display: flex;
+    justify-content:center;
+    height: 100%;
+    width: 100%;
+}
+
+.iframe{
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    width: 80%;
+}
+
+.clases,
+.Puntos,
+.alumnos{
+    display: inline-block;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+/* Comentado porque no se utiliza y para evitar conflictos
+ul {
+    margin-top: 3%;
+    text-align: right;
+    max-width: fit-content;
+    list-style-type: none;
+   
+}*/
+
+h1{
+    color: white;
+    background-color: rgb(138, 138, 255);    
+    margin-bottom: 0%;
+}
+
+html{
+    background-color: rgba(48, 230, 123, 0.705);
+}
+
+.opcion{
+    display: flex;
+    justify-content: center;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 0.5em;
+
+}
+
+.opcion div{
+    display: flex;
+    background-color: rgb(219, 242, 247);
+    border-radius: 0.5em;
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
+    justify-content: center;
+    align-items: center;
+    margin-left: 1em;
+    margin-right: 1em;
+}
+
+#docenteguardia{
+    color: rgb(0, 3, 201);
+}

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Consulta Docentes</title>
+        <link rel="stylesheet" href="css/navbar.css">
+        <link rel="stylesheet" href="css/ConsultaDocente.css">
+    </head>
+    <body>
+        <header class="header">
+            <div class="logo-header">
+                <a href=""><img src="img/logo.png" alt="logo"></a>
+            </div>
+            <div class="nav-menu">
+                <input type="checkbox" id="check">
+                <label for="check" class="checkbtn">
+                    <i class="menu-icon"><img src="img/menuhamburguesa.svg" alt="menu"></i>
+                </label>
+                <ul>
+                    <li><a href="admin.html">Administración</a></li>
+                    <li><a href="docentes.html">Profesores</a></li>
+                    <li><a href="alumnos.html">Alumnos</a></li>
+                    <li><a href="horarios.html">Horarios</a></li>
+                    <li><a href="convivencia.html">Convivencia</a></li>
+                    <li><a href="planos.html">Mapas</a></li>
+                </ul>
+            </div>
+       </header> 
+        <br>
+        <main>
+            <div id="docente">
+                <!-- Endpoints 7 y 8: introduce nombre y apellidos del profesor y devuelve aula dónde se encuentra y asignatura impartida -->
+                <div id="docente-profesor">
+                    <label for="profesor">Profesor: </label>
+                    <select name="profesor" id="profesor">
+                        <option value="default">Selecciona un profesor</option>
+                        <option value="Carlos Cano Ladera">Carlos Cano Ladera</option>
+                        <option value="Encarnación Perálvarez Aguilera">Encarnación Perálvarez Aguilera</option>
+                        <option value="Francisco Manuel Benítez Chico">Francisco Manuel Benítez Chico</option>
+                        <option value="Francisco Martínez Ruíz">Francisco Martínez Ruíz</option>
+                        <option value="Jose Antonio Sánchez García">Jose Antonio Sánchez García</option>
+                        <option value="Manuel Amaro Parradro">Manuel Amaro Parradro</option>
+                        <option value="Manuel Arroyo Juan">Manuel Arroyo Juan</option>
+                        <option value="Manuel Barbero Alcalde">Manuel Barbero Alcalde</option>
+                        <option value="Rafael Delgado Cubilla">Rafael Delgado Cubilla</option>
+                        <option value="Raquel Molina Mesa">Raquel Molina Mesa</option>
+                        <option value="Vicente Serrano Martínez">Vicente Serrano Martínez</option>
+                    </select>
+                    <br><br>
+                    <label for="hora">Tramo Horario: </label> <!-- Por defecto: ahora mismo. Si no se toca nada, el sistema usará la hora actual del servidor -->
+                    <select name="hora" id="hora">
+                        <option value="default">Ahora mismo</option>
+                        <option value="primera">8:15 - 9:15</option>
+                        <option value="segunda">9:15 - 10:15</option>
+                        <option value="tercera">10:15 - 11:15</option>
+                        <option value="cuarta">11:45 - 12:45</option>
+                        <option value="quinta">12:45 - 13:45</option>
+                        <option value="sexta">13:45 - 14:45</option>
+                    </select>
+                    <br><br>
+                    <label for="dia">Día: </label>
+                    <input type="date" id="dia"> <!-- Aparece por defecto el día actual -->
+                    <script>document.getElementById("dia").valueAsDate = new Date();</script>
+                    <br><br>
+                    <button class="button-docente">Buscar por docente</button>
+                </div>
+
+                <!-- Endpoint 9: introduce nombre del curso y recibe nombre del profesor y asignatura impartida en el momento actual -->
+                <div id="docente-curso">
+                    <label for="curso">Curso: </label>
+                    <select name="curso" id="curso">
+                        <option value="default">Selecciona un curso</option>
+                        <option value="1º ESO">1º ESO</option>
+                        <option value="2º ESO">2º ESO</option>
+                        <option value="3º ESO">3º ESO</option>
+                        <option value="4º ESO">4º ESO</option>
+                        <option value="1º BACH">1º BACH</option>
+                        <option value="2º BACH">2º BACH</option>
+                        <option value="1º DAM">1º DAM</option>
+                        <option value="2º DAM">2º DAM</option>
+                        <option value="1º DAW">1º DAW</option>
+                        <option value="2º DAW">2º DAW</option>
+                    </select>
+                    <br><br>
+                    <button class="button-docente">Buscar por curso</button> <!-- Devolverá qué profesor se encuentra en el aula actualmente o en el tramo horario elegido y asignatura impartida -->
+                </div>
+            </div>
+            <br><hr><br>
+            <div id="docente-guardia"> <!-- Mostrará nombres del profesor que falta y profesor sustituto por cada hora y clase -->
+                <iframe id="hoja-calculo" src="https://onedrive.live.com/embed?resid=370B3DAE70E66DD4%212895&authkey=!AEWXzF8NKl6X2lo&em=2"></iframe>
+            </div>
+        </main>
+    </body>
+</html>

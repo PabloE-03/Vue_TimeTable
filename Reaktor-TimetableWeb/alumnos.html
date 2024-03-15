@@ -1,0 +1,297 @@
+<!DOCTYPE html> 
+<html lang="en">
+    
+    <head>
+         <meta charset="UTF-8"> 
+         <meta http-equiv="X-UA-Compatible" content="IE=edge">
+         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <title>Lavabos</title>
+         <link rel="stylesheet" href="css/navbar.css">
+         <link rel="stylesheet" href="css/alumnos.css">
+        
+    </head>
+
+    <body>
+
+        <header class="header">
+            <div class="logo-header">
+                <a href=""><img src="img/logo.png" alt="logo"></a>
+            </div>
+            <div class="nav-menu">
+                <input type="checkbox" id="check">
+                <label for="check" class="checkbtn">
+                    <i class="menu-icon"><img src="img/menuhamburguesa.svg" alt="menu"></i>
+                </label>
+                <ul>
+                    <li><a href="admin.html">Administración</a></li>
+                    <li><a href="docentes.html">Profesores</a></li>
+                    <li><a href="alumnos.html">Alumnos</a></li>
+                    <li><a href="horarios.html">Horarios</a></li>
+                    <li><a href="convivencia.html">Convivencia</a></li>
+                    <li><a href="planos.html">Mapas</a></li>
+                </ul>
+            </div>
+       </header> 
+
+        <div class="table-title">
+            <h2>Info Alumnos</h2>
+        </div>
+
+        <div class="container-table-info-alumnos">
+
+            <div class="selectores">
+                <form>
+                    <label for="selector-curso">Cursos:</label>
+                    <select name="selector-curso" id="selector-curso">
+                        <option value="0">Seleccionar</option>
+                        <option value="aula01">1º FPB</option>
+                        <option value="aula03">2º FPB</option>
+                        <option value="aula05">1º DAM</option>
+                        <option value="aula07">2º DAM</option>
+                        <option value="aula02no">3º DIVER </option>
+                        <option value="aula02su">4º DIVER </option>
+                        <option value="aula011">1º BCS-A </option>
+                    </select>
+                </form>
+
+                <form>
+                    <label for="selector-alumno">Alumnos:</label>
+                    <select name="selector-alumno" id="selector-alumno">
+                        <option value="0">Seleccionar</option>
+                        <option value=“Alumno1”>Mayra Aguado López</option> 
+                        <option value=“Alumno2”>Rafael Alberola Robles</option> 
+                        <option value=“Alumno3”>Guillermo Alcusón Marco</option> 
+                        <option value=“Alumno4”>Francisca Alonso López</option> 
+                        <option value=“Alumno5”>Juan Álvaro Martínez-Carrasco</option> 
+                        <option value=“Alumno6”>Jaime Apariecido dos Santos</option> 
+                        <option value=“Alumno7”>Guido Arias Brenes</option> 
+                        <option value=“Alumno8”>Nekane Bariain Carrasco</option> 
+                        <option value=“Alumno9”>Jorge Barriobero Olarte</option> 
+                        <option value=“Alumno10”>Dolores Bastida López</option> 
+                        <option value=“Alumno11”>Maria E Berenguer Borja</option> 
+                        <option value=“Alumno12”>María Bernad Albiol</option> 
+                        <option value=“Alumno13”>José Manuel Blasco Boix</option> 
+                        <option value=“Alumno14”>Yanneth Bohorquez Pérez</option> 
+                        <option value=“Alumno15”>Antonio Camarasa Sanfelix</option> 
+                        <option value=“Alumno16”>Ramón Carañana Sanchís</option> 
+                        <option value=“Alumno17”>Clara Carbonell Sendra</option> 
+                        <option value=“Alumno18”>Antonio Casanova Mula</option> 
+                        <option value=“Alumno19”>Juan Félix Casas Bosca</option> 
+                        <option value=“Alumno20”>Mauricio Castillo Hidalgo</option> 
+                    </select>
+                </form>
+             </div>
+            
+            <div class="tabla-info-alumno">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Correo</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+    
+                    <tbody>
+                        <tr>
+                            <td>Vicente Serrano</td>
+                            <td>*****@g.educaand.es</td>
+                            <td>
+                                <span class="action-btn">
+                                    <a href="#">Info Tutor</a>
+                                    <a href="#">Info Tutor Legal</a>
+                                </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+    
+            </div>
+        </div>
+
+
+        <!--Tabla 1: Hace referencia al registro de ida y vuelta del baño de un alumno-->
+
+        
+        <div class="table-title">
+            <h2>Registrar ida y vuelta</h2>
+        </div>
+
+        <div class="table-record-01">
+
+            <div class="configuration-header">
+            
+                <div class="add">
+                    <span>Datos</span>
+                    <select name="course-select">
+                        <option value="course-option">Curso</option>
+                    </select>
+    
+                    <select name="name-select">
+                        <option value="group-option">Nombre y apellidos</option>
+                    </select>
+
+                </div>
+    
+            </div>
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Apellidos</th>
+                        <th>Curso</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>Lucía</td>
+                        <td>García González</td>
+                        <td>1 ESO A</td>
+                        <td>
+                            <span class="action-btn">
+                                <a href="#">Ida</a>
+                                <a href="#">Vuelta</a>
+                            </span>
+                        </td>
+                    </tr>
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <!--Tabla 2: Hace referencia a las estadísticas determinadas de un alumno-->
+
+        <div class="table-title">
+            <h2>Estadísticas del alumno</h2>
+        </div>
+
+        <div class="table-record-02">
+
+            <div class="configuration-header">
+            
+                <div class="add">
+                    <span>Datos</span>
+                    <select name="course-select">
+                        <option value="course-option">Curso</option>
+                    </select>
+    
+                    <select name="name-select">
+                        <option value="group-option">Nombre y apellidos</option>
+                    </select>
+
+                </div>
+
+                <div class="date">
+                    <span>Periodo</span>
+                    <input type="search" class="date-search" placeholder="Fecha inicio">
+                    <input type="search" class="date-search" placeholder="Fecha fin">
+                </div>
+    
+            </div>
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Apellidos</th>
+                        <th>Curso</th>
+                        <th>Veces idas al baño</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>Lucía</td>
+                        <td>García González</td>
+                        <td>1 ESO A</td>
+                        <td>?</td>
+                    </tr>
+                </tbody>
+
+            </table>
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>Días</th>
+                        <th>Horas</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>?</td>
+                        <td>?</td>
+                    </tr>
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <!--Tabla 3: Hace referencia a la lista de alumnos con el número de veces que han ido al baño-->
+
+        <div class="table-title">
+            <h2>Listado de alumnos</h2>
+        </div>
+
+        <div class="table-record-03">
+
+            <div class="configuration-header">
+
+                <div class="date">
+                    <span>Periodo</span>
+                    <input type="search" class="date-search" placeholder="Fecha inicio">
+                    <input type="search" class="date-search" placeholder="Fecha fin">
+                </div>
+    
+            </div>
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Apellidos</th>
+                        <th>Curso</th>
+                        <th>Veces idas al baño</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>Lucía</td>
+                        <td>García González</td>
+                        <td>1 ESO A</td>
+                        <td>?</td>
+                    </tr>
+
+                    <tr>
+                        <td>Pablo</td>
+                        <td>Motos Burgos</td>
+                        <td>2 ESO B</td>
+                        <td>?</td>
+                    </tr>
+
+                    <tr>
+                        <td>María</td>
+                        <td>López González</td>
+                        <td>4 ESO C</td>
+                        <td>?</td>
+                    </tr>
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </body>
+
+</html>
