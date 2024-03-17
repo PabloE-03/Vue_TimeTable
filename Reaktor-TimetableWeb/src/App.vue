@@ -1,37 +1,65 @@
+<!-- Componente JavaScript -->
 <script setup>
-import { ref } from 'vue';
-
-
+import { ref, watch } from 'vue';
+import User from './js/login-users';
+//Uso de DOM para cambiar el titulo de la pagina web
 var titulo = document.getElementById("titulo");
 titulo.textContent = "Reaktor";
-const mostrar = ref(false);
-const contenido = ref("");
-</script>
 
+//Variables para interpolar en el html
+var mostrar = ref(false);
+const email = ref("");
+const passwd = ref("");
+var inicioSesion = ref(false);
+var errorSesion = ref(false);
+
+//Observador para la contraseña para que cuando este vacia se resetee el
+//boton de mostrar contraseña
+watch(passwd,(nuevo,viejo)=>{
+    if(nuevo=="")
+    {
+        mostrar = ref(false);   
+    }
+});
+
+//Metodo para iniciar sesion
+const iniciarSesion = () =>
+{
+    var usuario = new User(email,passwd);
+
+    if(usuario.peticion())
+    {
+        console.log("Hola mundo");
+    }
+}
+   
+
+</script>
+<!-- Componente HTML -->
 <template>
     <div class="login">
         <h1>Iniciar Sesión</h1>
-        <form action="get">
+        <form action="http://localhost:8088/horarios/login" method="get" target="_blank">
             <div class="email">
                 <label for="email">Email</label>
-                <input type="email" name="email" id="email" placeholder="Email" required>
+                <input type="email" name="email" id="email" v-model="email" placeholder="Email" required>
             </div>
             <div class="password">
                 <label for="password">Contraseña</label>
                 <div v-show="mostrar" class="password-icon">
-                    <input type="text" name="password" v-model="contenido" id="password" placeholder="Contraseña" required>
-                    <button v-show="contenido!=''" v-on:click="mostrar = !mostrar" type="button" id="mostrarPassword">  </button>
+                    <input type="text" name="password" v-model="passwd" id="password" placeholder="Contraseña" required>
+                    <button v-show="passwd!=''" v-on:click="mostrar = !mostrar" type="button" id="mostrarPassword">  </button>
                 </div>
                 <div v-show="!mostrar" class="password-icon">
-                    <input type="password" name="password" v-model="contenido" id="password" placeholder="Contraseña" required>
-                    <button v-show="contenido!=''" v-on:click="mostrar = !mostrar" type="button" id="ocultarPassword">  </button>
+                    <input type="password"  v-model="passwd" id="password" placeholder="Contraseña" required>
+                    <button v-show="passwd!=''" v-on:click="mostrar = !mostrar" type="button" id="ocultarPassword">  </button>
                 </div>
             </div>
-            <input type="submit" value="Iniciar Sesión">
+            <button v-on:click="iniciarSesion">Iniciar Sesión</button>
         </form>
     </div>
 </template>
-
+<!-- Componente CSS -->
 <style scoped>
 
 *{
@@ -85,15 +113,24 @@ main{
     border-color: rgb(31, 155, 203);
 }
 
-.login input[type="submit"]{
+.login button {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    margin-bottom: 16px;
+    border: 1px solid;
+    border-color: rgb(31, 155, 203);
+}
+
+.login button{
     color: white;
     background-color: rgb(31, 155, 203);
-    border-radius: 5px;
+    border-radius: 4px;
     border-color: transparent;
     cursor: pointer;
 }
 
-.login input[type="submit"]:hover{
+.login button:hover{
     background-color: rgb(1, 128, 179);
 }
 

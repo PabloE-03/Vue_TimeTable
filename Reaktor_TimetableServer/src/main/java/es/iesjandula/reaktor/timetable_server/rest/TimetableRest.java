@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -70,6 +71,7 @@ import es.iesjandula.reaktor.timetable_server.models.parse.Profesor;
 import es.iesjandula.reaktor.timetable_server.models.parse.Profesores;
 import es.iesjandula.reaktor.timetable_server.models.parse.TimeSlot;
 import es.iesjandula.reaktor.timetable_server.models.parse.TramosHorarios;
+import es.iesjandula.reaktor.timetable_server.utils.TimeTableUtils;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 
@@ -84,7 +86,38 @@ public class TimetableRest
 {
 	/** Attribute centroPdfs , used for get the info of PDFS */
 	private Centro centroPdfs;
-
+	
+	/**Clase que se encarga de las operaciones logicas del servidor */
+	private TimeTableUtils util;
+	
+	public TimetableRest()
+	{
+		this.util = new TimeTableUtils();
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/login")
+	public ResponseEntity<?> login(@RequestParam(name="email",required = true) String email,
+			@RequestParam(name="password",required = true) String passwd
+			)
+	{
+		try
+		{
+			this.util.getUser(email, passwd);
+			
+			return ResponseEntity.ok().body("Usuario encontrado");
+		}
+		catch(HorariosError exception)
+		{
+			log.error("Usuario no encontrado", exception);
+			return ResponseEntity.status(404).body(exception.toMap());
+		}
+		catch(Exception exception)
+		{
+			log.error("Error de servidor", exception);
+			HorariosError error = new HorariosError(500,"Error de servidor",exception);
+			return ResponseEntity.status(500).body(error.toMap());
+		}
+	}
 	/**
 	 * Method sendXmlToObjects
 	 *

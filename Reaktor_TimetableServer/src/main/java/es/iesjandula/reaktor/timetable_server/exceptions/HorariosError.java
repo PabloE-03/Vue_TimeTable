@@ -16,7 +16,6 @@ import lombok.extern.slf4j.Slf4j;
  *
  */
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
 @Slf4j
 public class HorariosError extends Exception
@@ -24,38 +23,60 @@ public class HorariosError extends Exception
 	/** Attribute serialVersionUID*/
 	private static final long serialVersionUID = 2937203647694023448L;
 
-	/** Attribute code */
+	/**Codigo del error generado */
 	private int code;
 
-	/** Attribute text */
+	/**Descripcion del error */
 	private String text;
 	
-	/** Attribute exception*/
+	/**Causa externa generada */
 	private Exception exception;
 
 	/**
-	 * Method toMap exception to map
-	 * 
-	 * @return Map<String,String> map
+	 * Constructor que crea la excepcion usando un codigo, un mensaje y una causa
+	 * @param message descripcion del error
+	 * @param code codigo del error generado
+	 * @param text descripcion del error
+	 * @param exception causa externa del error generado
 	 */
-	public Map<String, String> toMap()
+	public HorariosError( int code, String text, Exception exception) 
 	{
-		Map<String, String> map = new HashMap<String, String>();
-		map.put(code + "", code + "");
-		map.put(text, text);
-		if(exception!=null) 
+		super(text, exception);
+		this.code = code;
+		this.text = text;
+		this.exception = exception;
+	}
+	
+	/**
+	 * Constructor que crea la excepcion usando un codigo y un mensaje
+	 * @param message descripcion del error
+	 * @param code codigo del error generado
+	 * @param text descripcion del error
+	 */
+	public HorariosError( int code, String text) 
+	{
+		super(text);
+		this.code = code;
+		this.text = text;
+	}
+	
+	
+	/**
+	 * Metodo que mapea el error generado para detallar el error generado
+	 * @return mapa con clave string y valor object que detalla el error
+	 */
+	public Map<String, Object> toMap()
+	{
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("codigo", this.code);
+		map.put("descripcion", this.text);
+		
+		if(this.exception!=null)
 		{
-			ObjectMapper mapper = new ObjectMapper();
-			try
-			{
-				map.put("exception",mapper.writeValueAsString(exception));
-			}
-			catch (JsonProcessingException exception)
-			{
-				String error = "Error generating execption mapper";
-				log.error(error);
-			}
+			map.put("causa", this.exception.getStackTrace());
 		}
+		
 		return map;
 	}
+
 }
