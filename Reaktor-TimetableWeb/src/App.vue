@@ -12,7 +12,7 @@ const email = ref("");
 const passwd = ref("");
 var inicioSesion = ref(false);
 var errorSesion = ref(false);
-
+var textoError = ref("");
 //Observador para la contraseña para que cuando este vacia se resetee el
 //boton de mostrar contraseña
 watch(passwd,(nuevo,viejo)=>{
@@ -25,21 +25,26 @@ watch(passwd,(nuevo,viejo)=>{
 //Metodo para iniciar sesion
 const iniciarSesion = () =>
 {
-    var usuario = new User(email,passwd);
-
-    if(usuario.peticion())
+    if(email.value=="" || passwd.value=="")
     {
-        console.log("Hola mundo");
+        console.log("algo mas");
+        errorSesion = ref(true);
+        textoError = ref("Todos los campos deben de estar rellenos");
     }
+    else
+    {
+        let usuario = new User(email.value,passwd.value);
+        var algo = usuario.peticion(); 
+    }
+    
 }
-   
 
 </script>
 <!-- Componente HTML -->
 <template>
     <div class="login">
         <h1>Iniciar Sesión</h1>
-        <form action="http://localhost:8088/horarios/login" method="get" target="_blank">
+        <form action="http://localhost:8080/horarios/login" method="get" target="_blank">
             <div class="email">
                 <label for="email">Email</label>
                 <input type="email" name="email" id="email" v-model="email" placeholder="Email" required>
@@ -55,7 +60,9 @@ const iniciarSesion = () =>
                     <button v-show="passwd!=''" v-on:click="mostrar = !mostrar" type="button" id="ocultarPassword">  </button>
                 </div>
             </div>
-            <button v-on:click="iniciarSesion">Iniciar Sesión</button>
+            <!--<input type="submit" @click="iniciarSesion" value="Iniciar Sesión">-->
+            <button type="button" v-on:click="iniciarSesion">Iniciar Sesión</button> 
+            <h4  v-show="errorSesion" class="error" style="color: darkred;" v-text="textoError"></h4>
         </form>
     </div>
 </template>
@@ -113,6 +120,27 @@ main{
     border-color: rgb(31, 155, 203);
 }
 
+.login input{
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    margin-bottom: 16px;
+    border: 1px solid;
+    border-color: rgb(31, 155, 203);
+}
+
+.login input[type="submit"]{
+    color: white;
+    background-color: rgb(31, 155, 203);
+    border-radius: 5px;
+    border-color: transparent;
+    cursor: pointer;
+}
+
+.login input[type="submit"]:hover{
+    background-color: rgb(1, 128, 179);
+}
+
 .login button {
     width: 100%;
     padding: 8px;
@@ -165,6 +193,7 @@ main{
     display: flex;
     justify-content: space-between;
 }
+
 
 
 </style>

@@ -1,4 +1,4 @@
-const http = require("http");
+import axios from "axios";
 
 class User
 {
@@ -25,32 +25,15 @@ class User
         //Transformacion de los parametros a string
         const queryString = new URLSearchParams(query).toString();
         
-        //Declaracion de la url
-        const url = {
-            hostname : "localhost",
-            port : 8088,
-            path : "/horarios/login?"+queryString,
-            method : 'GET'
-        };
-
-        //Solicitud http
-        const respuesta = http.request(url,(res)=>{
-            var code =  res.statusCode
-            res.on('data',(chunk) => {
-                console.log("Respuesta: "+chunk+"\n"+new Date().toDateString());
-            })
-            if(code==200)
-            {
-                encontrado = true;
-            }
+        let url = "http://localhost:8080/horarios/login?"+queryString;
+        let code = 0;
+        axios.get(url).then(async res => {
+            code = await res.status;
+            console.log(code);
+        }).catch(err =>{
+            console.log(err);
+            
         });
-
-        respuesta.on('error',(error) => {
-            console.log(error);
-        });
-
-        respuesta.end();
-        return encontrado;
     }
 }
 
