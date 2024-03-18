@@ -25,15 +25,17 @@ class User
         //Transformacion de los parametros a string
         const queryString = new URLSearchParams(query).toString();
         
-        let url = "http://localhost:8080/horarios/login?"+queryString;
+        let url = "http://localhost:8088/horarios/login?"+queryString;
         let code = 0;
         axios.get(url).then(async res => {
-            code = await res.status;
-            console.log(code);
-        }).catch(err =>{
+            try{
+                code = await res.data;
+                console.log(code);
+            }catch{
             console.log(err);
-            
+            }
         });
+
     }
 }
 

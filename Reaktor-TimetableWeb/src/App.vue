@@ -42,9 +42,9 @@ const iniciarSesion = () =>
 </script>
 <!-- Componente HTML -->
 <template>
-    <div class="login">
+    <div v-show="!inicioSesion" class="login">
         <h1>Iniciar Sesión</h1>
-        <form action="http://localhost:8080/horarios/login" method="get" target="_blank">
+        <form action="http://localhost:8088/horarios/login" method="get" target="_blank">
             <div class="email">
                 <label for="email">Email</label>
                 <input type="email" name="email" id="email" v-model="email" placeholder="Email" required>
@@ -52,11 +52,11 @@ const iniciarSesion = () =>
             <div class="password">
                 <label for="password">Contraseña</label>
                 <div v-show="mostrar" class="password-icon">
-                    <input type="text" name="password" v-model="passwd" id="password" placeholder="Contraseña" required>
+                    <input type="text" name="password" v-model="passwd"  placeholder="Contraseña" required>
                     <button v-show="passwd!=''" v-on:click="mostrar = !mostrar" type="button" id="mostrarPassword">  </button>
                 </div>
                 <div v-show="!mostrar" class="password-icon">
-                    <input type="password"  v-model="passwd" id="password" placeholder="Contraseña" required>
+                    <input type="password"  v-model="passwd" placeholder="Contraseña" required>
                     <button v-show="passwd!=''" v-on:click="mostrar = !mostrar" type="button" id="ocultarPassword">  </button>
                 </div>
             </div>
@@ -65,6 +65,7 @@ const iniciarSesion = () =>
             <h4  v-show="errorSesion" class="error" style="color: darkred;" v-text="textoError"></h4>
         </form>
     </div>
+    
 </template>
 <!-- Componente CSS -->
 <style scoped>
