@@ -1,6 +1,5 @@
 package es.iesjandula.reaktor.timetable_server.models;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -9,7 +8,6 @@ import lombok.NoArgsConstructor;
  *
  */
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
 public class Classroom
 {
@@ -18,4 +16,25 @@ public class Classroom
 	
 	/** Attribute floor*/
 	private String floor;
+	
+	/** Attribute name classroom */
+	private String name;
+
+	public Classroom(String number, String floor, String name) 
+	{
+		this.number = number;
+		this.floor = floor;
+		this.name = name;
+	}
+
+	public Classroom(String number, String floor) 
+	{
+		super();
+		this.number = number;
+		this.floor = floor;
+	}
+	
+	
+	
+	
 }

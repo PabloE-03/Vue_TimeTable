@@ -498,9 +498,9 @@ public class TimetableRest
 		try
 		{	
 			//GET THE ATTRIBUTE CENTRO IN SESSION
-			Centro centro = (Centro) session.getAttribute("storedCentro");
+			//Centro centro = (Centro) session.getAttribute("storedCentro");
 			//LIST TO SAVE THE TEACHERS
-			List<Profesor> profesores = centro.getDatos().getProfesores().getProfesor();
+			List<Profesor> profesores = this.centroPdfs.getDatos().getProfesores().getProfesor();
 			return ResponseEntity.ok().body(profesores);    	
 		}
 		catch (Exception exception)
@@ -1110,13 +1110,8 @@ public class TimetableRest
 		List<Aula> listaAula = new ArrayList<>();
 		try
 		{
-			// --- GETTING STORED CENTRO ---
-			if ((session.getAttribute("storedCentro") != null)
-					&& (session.getAttribute("storedCentro") instanceof Centro))
-			{
-				Centro centro = (Centro) session.getAttribute("storedCentro");
 				// -- GETTING LIST OF AULA IN CENTER ---
-				listaAula = centro.getDatos().getAulas().getAula();
+				listaAula = this.centroPdfs.getDatos().getAulas().getAula();
 
 				// -- FOR EAHC AULA IN listAula ---
 				for (int i = 0; i < listaAula.size(); i++)
@@ -1149,16 +1144,7 @@ public class TimetableRest
 					curso = new Course(nombreAula, classroom);
 					listaCurso.add(curso);
 				}
-			}
-			else
-			{
-				// -- ERROR NO CENTRO STORED OR EMPTY---
-				String error = "Error to read XML data centro or Empty";
-				HorariosError horariosError = new HorariosError(400, error, null);
-				log.info(error, horariosError);
-				return ResponseEntity.status(400).body(horariosError);
-			}
-
+			
 		}
 		catch (Exception exception)
 		{
@@ -1180,20 +1166,16 @@ public class TimetableRest
 	 */
 	@RequestMapping(method = RequestMethod.GET, value = "/teacher/get/classroom", produces = "application/json")
 	public ResponseEntity<?> getClassroomTeacher(
-			@RequestHeader(required = true) String name,
-			@RequestHeader(required = true) String lastname,
+			@RequestParam(required = true) String name,
+			@RequestParam(required = true) String lastname,
 			HttpSession session)
 	{
 		try
 		{
 			if (!name.isEmpty() && !name.isBlank() && !lastname.isBlank() && !lastname.isEmpty())
 			{
-				// --- GETTING THE STORED CENTRO DATA SESSION ---
-				if ((session.getAttribute("storedCentro") != null)
-						&& (session.getAttribute("storedCentro") instanceof Centro))
-				{
-					Centro centro = (Centro) session.getAttribute("storedCentro");
-					for (Profesor prof : centro.getDatos().getProfesores().getProfesor())
+				
+					for (Profesor prof : this.centroPdfs.getDatos().getProfesores().getProfesor())
 					{
 						String profName = prof.getNombre().trim().toLowerCase();
 						String profLastName = prof.getPrimerApellido().trim().toLowerCase() + " "
@@ -1209,12 +1191,12 @@ public class TimetableRest
 							log.info(actualTime);
 
 							TimeSlot profTramo = null;
-							profTramo = this.gettingTramoActual(centro, actualTime, profTramo);
+							profTramo = this.gettingTramoActual(this.centroPdfs, actualTime, profTramo);
 
 							// --- IF PROF TRAMO IS NOT NULL ---
 							if (profTramo != null)
 							{
-								for (HorarioProf horarioProf : centro.getHorarios().getHorariosProfesores()
+								for (HorarioProf horarioProf : this.centroPdfs.getHorarios().getHorariosProfesores()
 										.getHorarioProf())
 								{
 									if (prof.getNumIntPR().equalsIgnoreCase(horarioProf.getHorNumIntPR()))
@@ -1239,11 +1221,8 @@ public class TimetableRest
 											log.info("EL TRAMO " + profTramo
 													+ "\nNO EXISTE EN LAS ACTIVIDADES DEL PROFESOR " + prof);
 											// --- ERROR ---
-											String error = "EL TRAMO " + profTramo
-													+ "\nNO EXISTE EN LAS ACTIVIDADES DEL PROFESOR " + prof;
-											HorariosError horariosError = new HorariosError(500, error, null);
-											log.info(error, horariosError);
-											return ResponseEntity.status(400).body(horariosError);
+											String info = "El profesor no se encuentra en ningun aula";
+											return ResponseEntity.ok().body(info);
 										}
 
 										// --- IF PROF ACTIVIAD IS NOT NULL ---
@@ -1251,7 +1230,7 @@ public class TimetableRest
 										{
 											// --- GETTING THE ACTUAL AULA FROM AND GENERATE CLASSROOM ---
 											Aula profAula = null;
-											for (Aula aula : centro.getDatos().getAulas().getAula())
+											for (Aula aula : this.centroPdfs.getDatos().getAulas().getAula())
 											{
 												if (aula.getNumIntAu().trim()
 														.equalsIgnoreCase(profActividad.getAula().trim()))
@@ -1293,7 +1272,7 @@ public class TimetableRest
 													}
 												}
 
-												Classroom classroom = new Classroom(plantaNumero, numeroAula);
+												Classroom classroom = new Classroom(numeroAula, plantaNumero,profAula.getNombre());
 												log.info(classroom.toString());
 												return ResponseEntity.ok().body(classroom);
 											}
@@ -1313,20 +1292,13 @@ public class TimetableRest
 								String error = "Tramo no encontrado para fecha actual: " + dateTime + " ";
 								HorariosError horariosError = new HorariosError(400, error, null);
 								log.info(error, horariosError);
-								return ResponseEntity.status(400).body(horariosError);
+								return ResponseEntity.ok().body(horariosError);
 							}
 						}
 					}
 				}
-				else
-				{
-					// --- ERROR ---
-					String error = "Error on storedcentro";
-					HorariosError horariosError = new HorariosError(500, error, null);
-					log.info(error, horariosError);
-					return ResponseEntity.status(400).body(horariosError);
-				}
-			}
+				
+			
 			// --- ERROR ---
 			String error = "Error on parameters from header";
 			HorariosError horariosError = new HorariosError(500, error, null);
@@ -1895,18 +1867,14 @@ public class TimetableRest
 	{
 		try
 		{
-			// --- CHECKING THE VALUE OF STORED CENTRO ---
-			if ((session.getAttribute("storedCentro") != null)
-					&& (session.getAttribute("storedCentro") instanceof Centro))
-			{
 				// --- CASTING OBJECT TO STORED CENTRO ---
-				Centro centro = (Centro) session.getAttribute("storedCentro");
+				//Centro centro = (Centro) session.getAttribute("storedCentro");
 				List<Hour> hourList = new ArrayList<>();
 				for (int i = 0; i < 7; i++)
 				{
 					// --- GETTING THE INFO OF EACH TRAMO, BUT ONLY THE FIRST 7 TRAMOS , BECAUSE THT
 					// REPRESENT "LUNES" "PRIMERA-ULTIMA-HORA" ---
-					TimeSlot tramo = centro.getDatos().getTramosHorarios().getTramo().get(i);
+					TimeSlot tramo = this.centroPdfs.getDatos().getTramosHorarios().getTramo().get(i);
 
 					// --- GETTING THE HOURNAME BY THE ID OF THE TRAMO 1-7 (1,2,3,R,4,5,6) ---
 					String hourName = "";
@@ -1959,18 +1927,7 @@ public class TimetableRest
 				}
 				// --- RESPONSE WITH THE HOURLIST ---
 				return ResponseEntity.ok(hourList);
-			}
-			else
-			{
-				// --- ERROR ---
-				String error = "ERROR storedCentro NOT FOUND OR NULL";
-
-				log.info(error);
-
-				HorariosError horariosError = new HorariosError(400, error, null);
-				log.info(error, horariosError);
-				return ResponseEntity.status(400).body(horariosError);
-			}
+			
 		}
 		catch (Exception exception)
 		{
