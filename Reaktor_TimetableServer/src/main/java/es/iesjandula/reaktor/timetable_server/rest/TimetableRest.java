@@ -3398,20 +3398,9 @@ public class TimetableRest
 	@RequestMapping(method = RequestMethod.GET, value = "/get/points" , produces = "application/json")
 	public ResponseEntity<?> getListPointsCoexistence()
 	{
-		// CREATE AN EMPTY LIST TO STORE COEXISTENCE ACTITUDE POINTS
-		List<ActitudePoints> listActitudePoints = new ArrayList<>();
-
 		try
 		{
-			// --FAKE INFO FOR POINTS LIST--
-			ActitudePoints actitudePoints = new ActitudePoints(20, "Completes all tasks");
-			listActitudePoints.add(actitudePoints);
-			actitudePoints = new ActitudePoints(-10, "Does not complete tasks");
-			listActitudePoints.add(actitudePoints);
-			actitudePoints = new ActitudePoints(-20, "Disturbs the class");
-			listActitudePoints.add(actitudePoints);
-			actitudePoints = new ActitudePoints(10, "Helps classmates");
-			listActitudePoints.add(actitudePoints);
+			List<ActitudePoints> listActitudePoints = this.util.loadPoints();
 
 			// --CHECK IF THE LIST OF ACTITUDE POINTS IS NOT EMPTY--
 			if (!listActitudePoints.isEmpty())
