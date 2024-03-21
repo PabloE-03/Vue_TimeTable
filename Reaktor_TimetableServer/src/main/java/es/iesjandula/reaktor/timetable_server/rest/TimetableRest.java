@@ -1324,8 +1324,8 @@ public class TimetableRest
 	 */
 	@RequestMapping(method = RequestMethod.POST, value = "/teacher/get/classroom/tramo", produces = "application/json", consumes = "application/json")
 	public ResponseEntity<?> getClassroomTeacherSchedule(
-			@RequestHeader(required = true) String name,
-			@RequestHeader(required = true) String lastname, 
+			@RequestParam(required = true) String name,
+			@RequestParam(required = true) String lastname, 
 			@RequestBody(required = true) TimeSlot profTime,
 			HttpSession session)
 	{
@@ -1334,12 +1334,7 @@ public class TimetableRest
 			log.info(profTime.toString());
 			if (!name.isEmpty() && !name.isBlank() && !lastname.isBlank() && !lastname.isEmpty())
 			{
-				// --- GETTING THE STORED CENTRO DATA SESSION ---
-				if ((session.getAttribute("storedCentro") != null)
-						&& (session.getAttribute("storedCentro") instanceof Centro))
-				{
-					Centro centro = (Centro) session.getAttribute("storedCentro");
-					for (Profesor prof : centro.getDatos().getProfesores().getProfesor())
+					for (Profesor prof : this.centroPdfs.getDatos().getProfesores().getProfesor())
 					{
 						String profName = prof.getNombre().trim().toLowerCase();
 						String profLastName = prof.getPrimerApellido().trim().toLowerCase() + " "
@@ -1357,7 +1352,7 @@ public class TimetableRest
 							// --- IF PROF TRAMO IS NOT NULL ---
 							if (profTime != null)
 							{
-								for (HorarioProf horarioProf : centro.getHorarios().getHorariosProfesores()
+								for (HorarioProf horarioProf : this.centroPdfs.getHorarios().getHorariosProfesores()
 										.getHorarioProf())
 								{
 									if (prof.getNumIntPR().equalsIgnoreCase(horarioProf.getHorNumIntPR()))
@@ -1386,7 +1381,7 @@ public class TimetableRest
 													+ "\nNO EXISTE EN LAS ACTIVIDADES DEL PROFESOR " + prof;
 											HorariosError horariosError = new HorariosError(500, error, null);
 											log.info(error, horariosError);
-											return ResponseEntity.status(400).body(horariosError);
+											return ResponseEntity.ok().body("El profesor en el tramo "+profTime.getStartHour()+" - "+profTime.getEndHour()+" no se encuentra en ningun aula");
 										}
 
 										// --- IF PROF ACTIVIAD IS NOT NULL ---
@@ -1394,7 +1389,7 @@ public class TimetableRest
 										{
 											// --- GETTING THE ACTUAL AULA FROM AND GENERATE CLASSROOM ---
 											Aula profAula = null;
-											for (Aula aula : centro.getDatos().getAulas().getAula())
+											for (Aula aula : this.centroPdfs.getDatos().getAulas().getAula())
 											{
 												if (aula.getNumIntAu().trim()
 														.equalsIgnoreCase(profActividad.getAula().trim()))
@@ -1436,7 +1431,7 @@ public class TimetableRest
 													}
 												}
 
-												Classroom classroom = new Classroom(plantaNumero, numeroAula);
+												Classroom classroom = new Classroom(numeroAula,plantaNumero,profAula.getNombre());
 												log.info(classroom.toString());
 												return ResponseEntity.ok().body(classroom);
 											}
@@ -1460,15 +1455,7 @@ public class TimetableRest
 						}
 					}
 				}
-				else
-				{
-					// --- ERROR ---
-					String error = "Error on storedcentro";
-					HorariosError horariosError = new HorariosError(500, error, null);
-					log.info(error, horariosError);
-					return ResponseEntity.status(400).body(horariosError);
-				}
-			}
+				
 			// --- ERROR ---
 			String error = "Error on parameters from header";
 			HorariosError horariosError = new HorariosError(500, error, null);
@@ -1856,7 +1843,25 @@ public class TimetableRest
 			return ResponseEntity.status(500).body(horariosError);
 		}
 	}
-
+	
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/get/tramos", produces = "application/json")
+	public ResponseEntity<?> getNumTramos()
+	{
+		try
+		{
+			List<TimeSlot> tramos = this.centroPdfs.getDatos().getTramosHorarios().getTramo();
+			return ResponseEntity.ok().body(tramos);
+		}
+		catch(Exception exception)
+		{
+			String message = "Error de servidor, no se encuentran datos de los tramos";
+			log.error(message,exception);
+			HorariosError error = new HorariosError(500,message,exception);
+			return ResponseEntity.status(500).body(error.toMap());
+		}
+	}
+	
 	/**
 	 * Method getListHours
 	 *
