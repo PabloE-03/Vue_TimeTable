@@ -14,6 +14,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import es.iesjandula.reaktor.timetable_server.exceptions.HorariosError;
 import es.iesjandula.reaktor.timetable_server.models.ActitudePoints;
 import es.iesjandula.reaktor.timetable_server.models.User;
+import es.iesjandula.reaktor.timetable_server.models.parse.Aula;
 
 public class TimeTableUtils 
 {
@@ -133,5 +134,71 @@ public class TimeTableUtils
 		points.add(new ActitudePoints(-75, "Agresion fisica a docentes o cualquier miembro de la comunidad educativa con agravante"));
 		
 		return points;
+	}
+	
+	public List<Aula> transformarAula(List<Aula> original)
+	{
+		List<Aula> transformada = new LinkedList<Aula>();
+		
+		for(Aula aula:original)
+		{
+			if(!this.desecharAula(aula.getNombre(),aula.getAbreviatura()))
+			{
+				transformada.add(aula);
+			}
+		}
+		return transformada;
+	}
+	
+	private boolean desecharAula(String nombre,String numero)
+	{
+		switch(nombre)
+		{
+		case "LABORATORIO DE CIENCIAS":
+		{
+			return true;
+		}
+		case "Aula Taller Tecnología":
+		{
+			return true;
+		}
+		case "DESDOBLES":
+		{
+			return true;
+		}
+		case "Laboratorio FyQ - Desdbl4ESOB":
+		{
+			return true;
+		}
+		case "INFORMATICA 1":
+		{
+			return true;
+		}
+		case "INFORMATICA 2":
+		{
+			return true;
+		}
+		case "Sin asignar o sin aula":
+		{
+			return true;
+		}
+		case "Aula de Dibujo":
+		{
+			return true;
+		}
+		case "Patio Deportes":
+		{
+			return true;
+		}
+		default:
+		{
+			if(numero.equals("2.21") || numero.equals("1.11"))
+			{
+				return true;
+			}
+			
+			return false;
+		}
+		}
 	}
 }

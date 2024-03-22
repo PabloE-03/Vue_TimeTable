@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -1480,21 +1481,17 @@ public class TimetableRest
 	 */
 	@RequestMapping(method = RequestMethod.GET, value = "/get/teachersubject", produces = "application/json")
 	public ResponseEntity<?> getTeacherSubject(
-			@RequestHeader(required = true) String courseName,
+			@RequestParam(required = true) String courseName,
 			HttpSession session)
 	{
 		try
 		{
 			if (!courseName.isBlank() && !courseName.isBlank())
 			{
-				if ((session.getAttribute("storedCentro") != null)
-						&& (session.getAttribute("storedCentro") instanceof Centro))
-				{
-					Centro centro = (Centro) session.getAttribute("storedCentro");
 
 					// --- IF EXIST THE COURSE ---
 					Grupo grup = null;
-					for (Grupo grupo : centro.getDatos().getGrupos().getGrupo())
+					for (Grupo grupo : this.centroPdfs.getDatos().getGrupos().getGrupo())
 					{
 						if (grupo.getNombre().trim().equalsIgnoreCase(courseName.trim()))
 						{
@@ -1511,7 +1508,7 @@ public class TimetableRest
 						String actualTime = LocalDateTime.now().getHour() + ":" + LocalDateTime.now().getMinute();
 						log.info(actualTime);
 
-						acutalTramo = this.gettingTramoActual(centro, actualTime, acutalTramo);
+						acutalTramo = this.gettingTramoActual(this.centroPdfs, actualTime, acutalTramo);
 
 						// --- CHECKING IF THE TRAMO ACTUAL EXISTS ---
 						if (acutalTramo != null)
@@ -1520,7 +1517,7 @@ public class TimetableRest
 
 							// --- NOW GETTING THE HORARIO GRUP , WITH THE SAME ID OF THE GROUP ---
 							HorarioGrup horario = null;
-							for (HorarioGrup horarioGrup : centro.getHorarios().getHorariosGrupos().getHorarioGrup())
+							for (HorarioGrup horarioGrup : this.centroPdfs.getHorarios().getHorariosGrupos().getHorarioGrup())
 							{
 								// --- EQUAL IDS ---
 								if (horarioGrup.getHorNumIntGr().trim().equalsIgnoreCase(grup.getNumIntGr().trim()))
@@ -1552,7 +1549,7 @@ public class TimetableRest
 
 									// --- PROFESOR ---
 									Profesor profesor = null;
-									for (Profesor prof : centro.getDatos().getProfesores().getProfesor())
+									for (Profesor prof : this.centroPdfs.getDatos().getProfesores().getProfesor())
 									{
 										// --- EQUAL PROFESSOR ID --
 										if (prof.getNumIntPR().trim().equalsIgnoreCase(activ.getProfesor().trim()))
@@ -1563,7 +1560,7 @@ public class TimetableRest
 
 									// --- ASIGNATURA ---
 									Asignatura asignatura = null;
-									for (Asignatura asig : centro.getDatos().getAsignaturas().getAsignatura())
+									for (Asignatura asig : this.centroPdfs.getDatos().getAsignaturas().getAsignatura())
 									{
 										// --- EQUAL ASIGNATURA ID --
 										if (asig.getNumIntAs().trim().equalsIgnoreCase(activ.getAsignatura().trim()))
@@ -1658,18 +1655,6 @@ public class TimetableRest
 						return ResponseEntity.status(400).body(horariosError);
 					}
 				}
-				else
-				{
-					// --- ERROR ---
-					String error = "ERROR storedCentro not Found ";
-
-					log.info(error);
-
-					HorariosError horariosError = new HorariosError(400, error, null);
-					log.info(error, horariosError);
-					return ResponseEntity.status(400).body(horariosError);
-				}
-			}
 			else
 			{
 				// --- ERROR ---
@@ -1701,7 +1686,7 @@ public class TimetableRest
 	 */
 	@RequestMapping(method = RequestMethod.GET, value = "/get/classroomcourse", produces = "application/json")
 	public ResponseEntity<?> getClassroomCourse(
-			@RequestHeader(required = true) String courseName, 
+			@RequestParam(required = true) String courseName, 
 			HttpSession session)
 	{
 		try
@@ -1709,97 +1694,69 @@ public class TimetableRest
 			// --- CHECKING IF THE COURSE NAME IS NOT BLANK AND NOT EMPTY ---
 			if (!courseName.isBlank() && !courseName.isEmpty())
 			{
-				// --- CHECKING THE VALUE OF STOREDCENTRO FROM SESSION ---
-				if ((session.getAttribute("storedCentro") != null)
-						&& (session.getAttribute("storedCentro") instanceof Centro))
-				{
-					// --- CASTING OBJECT TO CENTRO ---
-					Centro centro = (Centro) session.getAttribute("storedCentro");
-
-					// --- CHECKING IF THE GRUPO EXISTS ----
-					Grupo grupo = null;
-					for (Grupo grup : centro.getDatos().getGrupos().getGrupo())
+					// --- IF THE GRUPO EXISTS (NOT NULL) ---
+					
+					// --- CHECK IF THE AULA EXISTS ---
+					Aula aula = null;
+					for (Aula aul : this.centroPdfs.getDatos().getAulas().getAula())
 					{
-						if (grup.getNombre().trim().equalsIgnoreCase(courseName.trim()))
+						// --- REPLACE º,'SPACE', - , FOR EMPTY , FROM GRUPO NOMBRE AND GRUPO ABRV ---
+						// --- THIS IS FOR TRY TO GET THE MAX POSIBILITIES OF GET THE AULA FROM CURSO
+						// ---
+
+//						String aulaName = grupo.getNombre().trim().toLowerCase().replace("º", "").replace(" ", "")
+//								.replace("-", "");
+//						String aulaAbr = grupo.getAbreviatura().trim().toLowerCase().replace("º", "")
+//								.replace(" ", "").replace("-", "");
+
+						// --- CHECK IF COURSENAME EXISTS ON THE AULA NAME OR THE COURSE ABRV EXIST ON
+						// THE AULA NAME ---
+//						if (aul.getNombre().trim().toLowerCase().replace("-", "").contains(aulaName)
+//								|| aul.getNombre().trim().toLowerCase().replace("-", "").contains(aulaAbr))
+//						{
+//							// -- IF EXISTS , SET THE VALUE OF AUL (FOREACH) ON AULA ---
+//							aula = aul;
+//						}
+						if(aul.getNombre().equalsIgnoreCase(courseName))
 						{
-							// --- GRUPO EXISTS (SET VALUE) ---
-							grupo = grup;
+							aula = aul;
 						}
 					}
 
-					// --- IF THE GRUPO EXISTS (NOT NULL) ---
-					if (grupo != null)
+					// --- IF THE AULA IS NOT NULL (EXISTS) ---
+					if (aula != null)
 					{
-						// --- CHECK IF THE AULA EXISTS ---
-						Aula aula = null;
-						for (Aula aul : centro.getDatos().getAulas().getAula())
+						String nombreAula = aula.getNombre();
+
+						// --- SPLIT BY '.' ---
+						String[] plantaAula = aula.getAbreviatura().split("\\.");
+
+						String plantaNumero = "";
+						String numeroAula = "";
+						// -- THE VALUES WITH CHARACTERS ONLY HAVE 1 POSITION ---
+						if (plantaAula.length > 1)
 						{
-							// --- REPLACE º,'SPACE', - , FOR EMPTY , FROM GRUPO NOMBRE AND GRUPO ABRV ---
-							// --- THIS IS FOR TRY TO GET THE MAX POSIBILITIES OF GET THE AULA FROM CURSO
-							// ---
-
-							String aulaName = grupo.getNombre().trim().toLowerCase().replace("º", "").replace(" ", "")
-									.replace("-", "");
-							String aulaAbr = grupo.getAbreviatura().trim().toLowerCase().replace("º", "")
-									.replace(" ", "").replace("-", "");
-
-							// --- CHECK IF COURSENAME EXISTS ON THE AULA NAME OR THE COURSE ABRV EXIST ON
-							// THE AULA NAME ---
-							if (aul.getNombre().trim().toLowerCase().replace("-", "").contains(aulaName)
-									|| aul.getNombre().trim().toLowerCase().replace("-", "").contains(aulaAbr))
-							{
-								// -- IF EXISTS , SET THE VALUE OF AUL (FOREACH) ON AULA ---
-								aula = aul;
-							}
-						}
-
-						// --- IF THE AULA IS NOT NULL (EXISTS) ---
-						if (aula != null)
-						{
-							String nombreAula = aula.getNombre();
-
-							// --- SPLIT BY '.' ---
-							String[] plantaAula = aula.getAbreviatura().split("\\.");
-
-							String plantaNumero = "";
-							String numeroAula = "";
-							// -- THE VALUES WITH CHARACTERS ONLY HAVE 1 POSITION ---
-							if (plantaAula.length > 1)
-							{
-								plantaNumero = plantaAula[0].trim();
-								numeroAula = plantaAula[1].trim();
-							}
-							else
-							{
-								plantaNumero = plantaAula[0].trim();
-								numeroAula = plantaAula[0].trim();
-							}
-
-							// -- IMPORTANT , CLASSROOM PLANTANUMERO AND NUMEROAULA , CHANGED TO STRING
-							// BECAUSE SOME PARAMETERS CONTAINS CHARACTERS ---
-							Classroom classroom = new Classroom(plantaNumero, numeroAula);
-
-							// --- RETURN FINALLY THE CLASSROOM ---
-							return ResponseEntity.ok(classroom);
-
+							plantaNumero = plantaAula[0].trim();
+							numeroAula = plantaAula[1].trim();
 						}
 						else
 						{
-							// --- ERROR ---
-							String error = "ERROR AULA NOT FOUND OR NULL";
-
-							log.info(error);
-
-							HorariosError horariosError = new HorariosError(400, error, null);
-							log.info(error, horariosError);
-							return ResponseEntity.status(400).body(horariosError);
+							plantaNumero = plantaAula[0].trim();
+							numeroAula = plantaAula[0].trim();
 						}
+
+						// -- IMPORTANT , CLASSROOM PLANTANUMERO AND NUMEROAULA , CHANGED TO STRING
+						// BECAUSE SOME PARAMETERS CONTAINS CHARACTERS ---
+						Classroom classroom = new Classroom(numeroAula,plantaNumero,nombreAula);
+
+						// --- RETURN FINALLY THE CLASSROOM ---
+						return ResponseEntity.ok(classroom);
 
 					}
 					else
 					{
 						// --- ERROR ---
-						String error = "ERROR GRUPO NOT FOUND OR NULL";
+						String error = "ERROR AULA NOT FOUND OR NULL";
 
 						log.info(error);
 
@@ -1808,20 +1765,9 @@ public class TimetableRest
 						return ResponseEntity.status(400).body(horariosError);
 					}
 
+					
+					
 				}
-				else
-				{
-					// --- ERROR ---
-					String error = "ERROR storedCentro not found or NUll";
-
-					log.info(error);
-
-					HorariosError horariosError = new HorariosError(400, error, null);
-					log.info(error, horariosError);
-					return ResponseEntity.status(400).body(horariosError);
-				}
-
-			}
 			else
 			{
 				// --- ERROR ---
@@ -3612,5 +3558,43 @@ public class TimetableRest
 			// (INTERNAL SERVER ERROR) --
 			return ResponseEntity.status(500).body(horariosError);
 		}
+	}
+	
+	@RequestMapping(method = RequestMethod.GET,value="/get/coursenames",produces = "application/json")
+	public ResponseEntity<?> getCourseNames()
+	{
+		try
+		{
+			
+			List<Grupo> grupos = new LinkedList<Grupo>();
+			
+			grupos = this.centroPdfs.getDatos().getGrupos().getGrupo();
+			List<Aula> aulas = new LinkedList<Aula>();
+			
+		    aulas = this.centroPdfs.getDatos().getAulas().getAula();	
+		    
+		    if(aulas.isEmpty())
+		    {
+				String error = "Los grupos no se han cargado";
+				HorariosError horariosError = new HorariosError(400, error);
+				log.error(error);
+				return ResponseEntity.status(400).body(horariosError);
+		    }
+		    
+			//return ResponseEntity.ok().body(this.util.transformarAula(aulas));
+		    
+		    return ResponseEntity.ok().body(grupos);
+		}
+		catch (Exception exception)
+		{
+			// -- CATCH ANY ERROR --
+			String error = "Server Error";
+			HorariosError horariosError = new HorariosError(500, error, exception);
+			log.error(error, exception);
+			// -- RETURN A SERVER ERROR MESSAGE AS A RESPONSEENTITY WITH HTTP STATUS 500
+			// (INTERNAL SERVER ERROR) --
+			return ResponseEntity.status(500).body(horariosError);
+		}
+		
 	}
 }
