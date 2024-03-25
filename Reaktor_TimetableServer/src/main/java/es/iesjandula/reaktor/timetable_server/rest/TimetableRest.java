@@ -91,9 +91,13 @@ public class TimetableRest
 	/**Clase que se encarga de las operaciones logicas del servidor */
 	private TimeTableUtils util;
 	
+	/**Lista de estudiantes cargados por csv */
+	private List<Student> students;
+	
 	public TimetableRest()
 	{
 		this.util = new TimeTableUtils();
+		this.students = new LinkedList<Student>();
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/login")
@@ -528,7 +532,6 @@ public class TimetableRest
 			for (int i = 100; i > studentList.size(); i--)
 			{
 				Student student = new Student();
-				student.setCourse(new Course("Course" + i, new Classroom(String.valueOf(i), String.valueOf(i))));
 				student.setName("Alumno1" + (int) ((Math.random() * 100) + 1));
 				student.setLastName("PrimerApp" + (int) ((Math.random() * 100) + 1));
 				studentList.add(student);
@@ -1586,7 +1589,10 @@ public class TimetableRest
 
 										// --- setting asignatura name ---
 										teacherMoment.setSubject(asignatura.getNombre().trim());
-
+										
+										Classroom clase = this.util.searchClassroom(activ.getAula(),this.centroPdfs.getDatos().getAulas().getAula());
+										teacherMoment.setClassroom(clase);
+										
 										// --- RETURN THE THEACER MOMENT , WIOUTH CLASSROOM ---
 										return ResponseEntity.ok().body(teacherMoment);
 
@@ -1908,7 +1914,7 @@ public class TimetableRest
 		try
 		{
 
-			Student student = new Student(name, lastname, new Course(course, null));
+			Student student = new Student(name, lastname, course);
 
 			// GET THE CURRENT TIME
 			LocalDateTime currentDateTime = LocalDateTime.now();
@@ -1960,7 +1966,7 @@ public class TimetableRest
 	{
 		try
 		{
-			Student student = new Student(name, lastname, new Course(course, null));
+			Student student = new Student(name, lastname, course);
 			// GET THE CURRENT TIME
 			LocalDateTime currentDateTime = LocalDateTime.now();
 
@@ -2688,13 +2694,6 @@ public class TimetableRest
 			@RequestHeader(required = true) String lastname,
 			HttpSession session)
 	{
-		// -- LISTA ESTUDIANTES -- (FAKE) ---
-		List<Student> listaEstudiantes = new ArrayList<>(
-				List.of(new Student("David", "Martinez Flores", new Course("1ESOA", null)),
-						new Student("Pablo", "Fernandez Garcia", new Course("2ESOB", null)),
-						new Student("Manuel", "Belmonte Oliva", new Course("3ESOA", null)),
-						new Student("Carlos", "Ruiz Araque", new Course("4ESOA", null))));
-
 		try
 		{
 			// --- checking stored CENTRO ---
@@ -2708,7 +2707,7 @@ public class TimetableRest
 					// -- NOMBRE Y APELLIDOS CON CONTENIDO ---
 
 					Student student = null;
-					for (Student st : listaEstudiantes)
+					for (Student st : students)
 					{
 						// -- CHECKING IF STUDENT EXISTS ---
 						if (st.getName().trim().equalsIgnoreCase(name.trim())
@@ -2731,7 +2730,7 @@ public class TimetableRest
 									"");
 
 							log.info(student.getCourse().toString());
-							String nombreGrupo = student.getCourse().getName().trim().replace("º", "").replace(" ", "")
+							String nombreGrupo = student.getCourse().trim().replace("º", "").replace(" ", "")
 									.replace("-", "");
 
 							if (nombreGrp.toLowerCase().contains(nombreGrupo.toLowerCase())
@@ -3275,52 +3274,63 @@ public class TimetableRest
 	// COURSE
 	@RequestMapping(method = RequestMethod.GET, value = "/get/course/sort/students" , produces = "application/json")
 	public ResponseEntity<?> getListAlumnoFirstSurname(
-			@RequestHeader(required = true) String course)
+			@RequestParam(required = true,name = "course") String course)
 	{
-		// CREATE AN EMPTY LIST TO STORE STUDENT OBJECTS
-		List<Student> listStudents = new ArrayList<>();
-
-		// --CREATE FAKE STUDENT LIST--
-		// CREATE FAKE STUDENT OBJECTS AND ADD THEM TO THE LIST
-		Student student = new Student("Carlos", "Ruiz", new Course("1DAM", null));
-		listStudents.add(student);
-		student = new Student("Manuel", "Belmonte", new Course("2DAM", null));
-		listStudents.add(student);
-
 		try
 		{
-			// CHECK IF THE LIST OF STUDENTS IS NOT EMPTY
-			if (!listStudents.isEmpty())
+			if(this.students.isEmpty()) 
 			{
-				// --LIST IS NOT EMPTY--
-				// --SORT THE LIST OF STUDENTS BASED ON THE LAST NAME--
-				Collections.sort(listStudents);
-
-				// --CREATE A TEMPORARY LIST TO FILTER STUDENTS BASED ON THE SPECIFIED COURSE--
-				List<Student> temporalList = new ArrayList<>();
-				for (Student studen : listStudents)
+				throw new HorariosError(409,"No hay alumnos cargados en el servidor");
+			}
+			
+			Student [] sortStudents = this.util.sortStudentCourse(course, this.students);
+			
+			return ResponseEntity.ok().body(sortStudents);
+		}
+		catch(HorariosError exception)
+		{
+			log.error("Error al devolver los alumnos ordenados",exception);
+			return ResponseEntity.status(400).body(exception.toMap());
+		}
+		catch (Exception exception)
+		{
+			// -- CATCH ANY ERROR --
+			// RETURN A SERVER ERROR MESSAGE AS A RESPONSEENTITY WITH HTTP STATUS 500
+			// (INTERNAL SERVER ERROR)
+			String error = "Server Error";
+			HorariosError horariosError = new HorariosError(500, error, exception);
+			log.error(error, exception);
+			return ResponseEntity.status(500).body(horariosError);
+		}
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/get/students-course",produces = "application/json")
+	public ResponseEntity<?> getStudentsCourse()
+	{
+		try
+		{
+			
+			if(this.students.isEmpty()) 
+			{
+				throw new HorariosError(409,"No hay alumnos cargados en el servidor");
+			}
+			
+			List <String> courseStudent = new LinkedList<String>();
+			
+			for(Student student:this.students)
+			{
+				if(!courseStudent.contains(student.getCourse()))
 				{
-					// --FILTER STUDENTS BASED ON THE SPECIFIED COURSE AND ADD THEM TO THE TEMPORARY
-					// LIST--
-					if (studen.getCourse().getName().equals(course))
-					{
-						temporalList.add(studen);
-					}
+					courseStudent.add((student.getCourse()));
 				}
-				// --RETURN THE FILTERED LIST OF STUDENTS AS A RESPONSEENTITY WITH HTTP STATUS
-				// 200 (OK)--
-				return ResponseEntity.ok().body(temporalList);
 			}
-			else
-			{
-				// --LIST IS EMPTY--
-				// -- RETURN AN ERROR MESSAGE AS A RESPONSEENTITY WITH HTTP STATUS 400 (BAD
-				// REQUEST)--
-				String error = "List not found";
-				HorariosError horariosError = new HorariosError(400, error, null);
-				log.error(error);
-				return ResponseEntity.status(400).body(horariosError);
-			}
+			
+			return ResponseEntity.ok().body(courseStudent);
+		}
+		catch(HorariosError exception)
+		{
+			log.error("Error al devolver los cursos de los alumnos",exception);
+			return ResponseEntity.status(409).body(exception.toMap());
 		}
 		catch (Exception exception)
 		{
@@ -3596,5 +3606,26 @@ public class TimetableRest
 			return ResponseEntity.status(500).body(horariosError);
 		}
 		
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, value = "/send/csv-alumnos",consumes = "multipart/form-data")
+	public ResponseEntity<?> loadStudents(@RequestPart( name = "csvFile",required = true)MultipartFile csvFile)
+	{
+		try
+		{
+			byte [] content = csvFile.getBytes();
+			this.students = this.util.parseStudent(content);
+			return ResponseEntity.ok().body(students);
+		}
+		catch(HorariosError exception)
+		{
+			log.error("El fichero introducido no contiene los datos de los alumnos bien formados",exception);
+			return ResponseEntity.status(406).body(exception.toMap());
+		}
+		catch(Exception exception)
+		{
+			log.error("Error de servidor",exception);
+			return ResponseEntity.status(500).body("Error de servidor "+exception.getStackTrace());
+		}
 	}
 }

@@ -2,6 +2,7 @@ package es.iesjandula.reaktor.timetable_server.utils;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -13,6 +14,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import es.iesjandula.reaktor.timetable_server.exceptions.HorariosError;
 import es.iesjandula.reaktor.timetable_server.models.ActitudePoints;
+import es.iesjandula.reaktor.timetable_server.models.Classroom;
+import es.iesjandula.reaktor.timetable_server.models.Student;
 import es.iesjandula.reaktor.timetable_server.models.User;
 import es.iesjandula.reaktor.timetable_server.models.parse.Aula;
 
@@ -201,4 +204,108 @@ public class TimeTableUtils
 		}
 		}
 	}
+	/**
+	 * Metodo que busca una clase determinada usando su identificador
+	 * @param numero
+	 * @param aulas
+	 * @return clase encontrada
+	 */
+	public Classroom searchClassroom(String numero,List<Aula> aulas)
+	{	
+		int index = 0;
+		boolean out = false;
+		Classroom classroom = null;
+		
+		while(index<aulas.size() && !out)
+		{
+			Aula aula = aulas.get(index);
+			
+			if(aula.getNumIntAu().equals(numero))
+			{
+				classroom = new Classroom(aula.getNumIntAu(),aula.getAbreviatura(),aula.getNombre());
+				out = true;
+			}	
+			index++;
+		}
+		
+		return classroom;
+		
+	}
+	/**
+	 * Metodo que recibe el contenido de un fichero en bytes y lo parsea para obtener
+	 * el nombre, apellidos y curso del alumnado
+	 * @param content contenido en bytes
+	 * @return lista de alumnos parseados
+	 * @throws HorariosError
+	 */
+	public List<Student> parseStudent(byte [] content) throws HorariosError
+	{
+		List<Student> students = new LinkedList<Student>();
+		
+		String stringContent = new String(content);
+		
+		String [] split = stringContent.split("\n");
+		
+		split[0] = split[0].trim();
+		
+		if(!split[0].equals("\"Alumno/a\",\"Unidad\"") && !split[0].equals("\"Alumno/a\",\"Curso\""))
+		{
+			log.error("Los datos iniciales no son Alumno/a y Unidad o curso");
+			throw new HorariosError(406,"Los datos del csv no coinciden con lo que requiere el servidor");
+		}
+		else
+		{
+			for(int i = 1;i<split.length;i++)
+			{
+				String [] splitDatos = split[i].split(",");
+				//Operaciones con el nombre del alumno
+				splitDatos[0] = splitDatos[0].substring(1);
+				splitDatos[0] = splitDatos[0].trim();
+				//Operaciones con el apellido del alumno
+				splitDatos[1] = splitDatos[1].trim();
+				splitDatos[1] = splitDatos[1].substring(0, splitDatos[1].length()-1);
+				//Operaciones con el curso del alumno
+				splitDatos[2] = splitDatos[2].trim();
+				splitDatos[2] = splitDatos[2].substring(1, splitDatos[2].length()-1);
+				
+				students.add(new Student(splitDatos[1],splitDatos[0],splitDatos[2]));
+			}
+		}
+		return students;
+	}
+	/**
+	 * Metodo que busca alumnos por el curso y los ordena por apellido
+	 * @param course
+	 * @param students
+	 * @return lista de alumnos ordenada
+	 * @throws HorariosError
+	 */
+	public Student [] sortStudentCourse(String course,List<Student> students) throws HorariosError
+	{
+		//Array para ordenar los alumnos
+ 		Student [] sortStudent = new Student[0];
+		
+ 		//Busqueda de alumnos por curso
+		for(Student student : students)
+		{
+			if(student.getCourse().equals(course))
+			{
+				sortStudent = Arrays.copyOf(sortStudent, sortStudent.length+1);
+				sortStudent[sortStudent.length-1] = student;
+			}
+		}
+		
+		//Si no existen devolvemos un error
+		if(sortStudent.length==0)
+		{
+			log.error("El curso "+course+" no se encuentra en ningun alumno");
+			throw new HorariosError(404,"El curso intreoducido no coincide con ningun alumno");
+		}
+		
+		//Si no hay error ordenamos los alumnos por apellido
+		Arrays.sort(sortStudent);
+		
+		return sortStudent;
+	}
+	
 }
