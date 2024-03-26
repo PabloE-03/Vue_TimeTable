@@ -2473,7 +2473,7 @@ public class TimetableRest
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.GET, value = "/get/grupo/pdf", produces = MediaType.APPLICATION_PDF_VALUE)
-	public ResponseEntity<?> getGroupSchedule(@RequestHeader(required = true) String grupo)
+	public ResponseEntity<?> getGroupSchedule(@RequestParam(required = true,name = "group") String grupo)
 	{
 		try
 		{
