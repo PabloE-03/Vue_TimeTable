@@ -2250,8 +2250,9 @@ public class TimetableRest
 	 */
 	@RequestMapping(method = RequestMethod.GET, value = "/get/horario/teacher/pdf", produces = MediaType.APPLICATION_PDF_VALUE)
 	public ResponseEntity<?> getSchedulePdf(
-			@RequestHeader(required = true) String name,
-			@RequestHeader(required = true) String lastname)
+			@RequestParam(required = true,name = "name") String name,
+			@RequestParam(required = true,name = "lastname") String lastname
+			)
 	{
 		try
 		{
