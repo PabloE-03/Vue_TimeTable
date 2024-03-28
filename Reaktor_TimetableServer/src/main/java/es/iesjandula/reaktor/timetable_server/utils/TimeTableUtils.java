@@ -2,6 +2,7 @@ package es.iesjandula.reaktor.timetable_server.utils;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -17,6 +18,7 @@ import es.iesjandula.reaktor.timetable_server.models.ActitudePoints;
 import es.iesjandula.reaktor.timetable_server.models.Classroom;
 import es.iesjandula.reaktor.timetable_server.models.Student;
 import es.iesjandula.reaktor.timetable_server.models.User;
+import es.iesjandula.reaktor.timetable_server.models.Visitas;
 import es.iesjandula.reaktor.timetable_server.models.parse.Aula;
 
 public class TimeTableUtils 
@@ -336,5 +338,142 @@ public class TimeTableUtils
 		}
 		return student;
 	}
+	/**
+	 * Metodo que registra y comprueba la ida al baño de un estudiante
+	 * @param student
+	 * @param visitas
+	 * @return visita como ida registrada
+	 * @throws HorariosError
+	 */
+	public List<Visitas> comprobarVisita(Student student,List<Visitas> visitas) throws HorariosError
+	{
+		if(visitas.isEmpty())
+		{
+			visitas.add(new Visitas(student,true,false,null));
+		}
+		else
+		{
+			int index = 0;
+			boolean out = false;
+			
+			while(index<visitas.size() && !out)
+			{
+				Visitas item = visitas.get(index);
+				
+				if(student.equals(item.getStudent()) && item.isIda() && !item.isVuelta())
+				{
+					out = true;
+				}
+				index++;
+			}
+			
+			if(out)
+			{
+				throw new HorariosError(404,"El estudiante no ha regresado del baño");
+			}
+			else
+			{
+				visitas.add(new Visitas(student,true,false,null));
+			}
+		}
+		
+		return visitas;
+	}
 	
+	/**
+	 * Metodo que registra y comprueba la vuelta del baño de un estudiante
+	 * @param student
+	 * @param visitas
+	 * @return lista de visitas actualizada con la vuelta
+	 * @throws HorariosError
+	 */
+	public List<Visitas> comprobarVuelta(Student student,List<Visitas> visitas) throws HorariosError
+	{
+		if(visitas.isEmpty())
+		{
+			throw new HorariosError(404,"No hay visitas registradas");
+		}
+		else
+		{
+			int index = 0;
+			boolean out = false;
+			
+			while(index<visitas.size() && !out)
+			{
+				Visitas item = visitas.get(index);
+				
+				if(student.equals(item.getStudent()) && item.isIda() && !item.isVuelta())
+				{
+					visitas.remove(index);
+					item.setVuelta(true);
+					int numBathroom = student.getNumBathroom();
+					numBathroom++;
+					student.setNumBathroom(numBathroom);
+					LocalDateTime date = LocalDateTime.now();
+					visitas.add(new Visitas(student,true,true,date));
+					out = true;
+				}
+				
+				index++;
+			}
+			
+			if(!out)
+			{
+				throw new HorariosError(404,"El alumno no ha ido al baño en ningun momento");
+			}
+			
+			return visitas;
+		}
+	}
+	
+	/**
+	 * Metodo que busca un estudainte y suma en uno las veces que ha ido al baño
+	 * @param student
+	 * @param students
+	 * @return
+	 */
+	public List<Student> sumarBathroom(Student student,List<Student> students)
+	{
+		int index = 0;
+		boolean out = false;
+		
+		while(index<students.size() && !out)
+		{
+			Student item = students.get(index);
+			
+			if(item.equals(student))
+			{
+				students.remove(index);
+				int numBathroom = student.getNumBathroom();
+				numBathroom++;
+				student.setNumBathroom(numBathroom);
+				students.add(student);
+				out = true;
+			}
+			index++;
+		}
+		
+		return students;
+	}
+	
+	/**
+	 * Metodo que ordena todos los estudiantes por su apellido
+	 * @param students
+	 * @return lista de estudiantes ordenados
+	 */
+	public Student [] ordenarStudents (List<Student> students)
+	{
+		Student [] sortStudents = new Student[0];
+		
+		for(int i=0;i<students.size();i++)
+		{
+			sortStudents = Arrays.copyOf(sortStudents, i++);
+			sortStudents[i] = students.get(i);
+		}
+		
+		Arrays.sort(sortStudents);
+		
+		return sortStudents;
+	}
+ 	
 }

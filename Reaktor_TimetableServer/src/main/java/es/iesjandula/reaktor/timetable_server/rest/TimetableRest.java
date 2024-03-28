@@ -48,6 +48,7 @@ import es.iesjandula.reaktor.timetable_server.models.Rol;
 import es.iesjandula.reaktor.timetable_server.models.Student;
 import es.iesjandula.reaktor.timetable_server.models.Teacher;
 import es.iesjandula.reaktor.timetable_server.models.TeacherMoment;
+import es.iesjandula.reaktor.timetable_server.models.Visitas;
 import es.iesjandula.reaktor.timetable_server.models.parse.Actividad;
 import es.iesjandula.reaktor.timetable_server.models.parse.Asignatura;
 import es.iesjandula.reaktor.timetable_server.models.parse.Asignaturas;
@@ -92,10 +93,14 @@ public class TimetableRest
 	/**Lista de estudiantes cargados por csv */
 	private List<Student> students;
 	
+	/**Lista de visitas al baño por los estudiantes */
+	private List<Visitas> logVisitas;
+	
 	public TimetableRest()
 	{
 		this.util = new TimeTableUtils();
 		this.students = new LinkedList<Student>();
+		this.logVisitas = new LinkedList<Visitas>();
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/login")
@@ -525,18 +530,13 @@ public class TimetableRest
 	{
 		try
 		{
-			// --- CREATING FAKE STUDEN LIST ---
-			List<Student> studentList = new ArrayList<>();
-			for (int i = 100; i > studentList.size(); i--)
+			if(this.students.isEmpty())
 			{
-				Student student = new Student();
-				student.setName("Alumno1" + (int) ((Math.random() * 100) + 1));
-				student.setLastName("PrimerApp" + (int) ((Math.random() * 100) + 1));
-				studentList.add(student);
+				HorariosError error = new HorariosError(400,"No se han cargado estudiantes");
+				return ResponseEntity.status(404).body(error.toMap());
 			}
-			// -- IF ALL ITS DONE , RETURN THE LIST SORTED ---
-			Collections.sort(studentList);
-			return ResponseEntity.ok().body(studentList);
+			
+			return ResponseEntity.ok().body(this.util.ordenarStudents(this.students));
 		}
 		catch (Exception exception)
 		{
@@ -1911,31 +1911,17 @@ public class TimetableRest
 	{
 		try
 		{
-
+			//Buscamos el estudiante
 			Student student = this.util.findStudent(name, lastname, course, this.students);
-			// GET THE CURRENT TIME
-			LocalDateTime currentDateTime = LocalDateTime.now();
-
-			// MAP WITH THE STUDENT AND THE TIME HE GO TO THE BATHROOM
-			Map<String, Object> studentDataTimeMap = new HashMap<>();
-			studentDataTimeMap.put("Informacion estudiante", student);
-			studentDataTimeMap.put("Fecha Actual", currentDateTime);
-			String studenNameLastname = name + " " + lastname;
-			// STUDENTS WITH A LIST OF DATES FOR EVERYONE SAVED IN SESSION
-			List<LocalDateTime> fechasAlumno = (List<LocalDateTime>) session.getAttribute(studenNameLastname + "_visitas");
-			// CREATE THE LIST IF ITS NULL
-			if (fechasAlumno == null)
-			{
-
-				fechasAlumno = new ArrayList<>();
-
-			}
-			// WE ADD THE DATE TO THE LIST
-			fechasAlumno.add(currentDateTime);
-			// SET THE ATRIBUTTE
-			session.setAttribute(studenNameLastname + "_visitas", fechasAlumno);
-
+			//En caso de que no haya ido al baño se anota si esta en el se manda un error
+			this.logVisitas = this.util.comprobarVisita(student, this.logVisitas);
+			//Si no hay error devolvemos que todo ha ido bien
 			return ResponseEntity.ok().build();
+		}
+		catch(HorariosError exception)
+		{
+			log.error("Error al registrar la ida de un estudiante",exception);
+			return ResponseEntity.status(404).body(exception.toMap());
 		}
 		catch (Exception exception)
 		{
@@ -1964,27 +1950,17 @@ public class TimetableRest
 		try
 		{
 			Student student = this.util.findStudent(name, lastname, course, this.students);
-			// GET THE CURRENT TIME
-			LocalDateTime currentDateTime = LocalDateTime.now();
+			
+			this.logVisitas = this.util.comprobarVuelta(student, this.logVisitas);
 
-			// MAP WITH THE STUDENT AND THE TIME HE COMEBACK TO THE BATHROOM
-			Map<String, Object> studentDataComebackTimeMap = new HashMap<>();
-			studentDataComebackTimeMap.put("Informacion estudiante", student);
-			studentDataComebackTimeMap.put("Fecha Actual", currentDateTime);
-			String studenNameLastname = name + " " + lastname;
-			List<LocalDateTime> fechasAlumnoComeback = (List<LocalDateTime>) session
-					.getAttribute(studenNameLastname + "_visitas");
-			// CREATE THE LIST IF ITS NULL
-			if (fechasAlumnoComeback == null)
-			{
-
-				fechasAlumnoComeback = new ArrayList<>();
-
-			}
-			// WE ADD THE DATE TO THE LIST
-			fechasAlumnoComeback.add(currentDateTime);
-
+			this.students = this.util.sumarBathroom(student, this.students);
+			
 			return ResponseEntity.ok().build();
+		}
+		catch(HorariosError exception)
+		{
+			log.error("Error al registrar la vuelta de un estudiante",exception);
+			return ResponseEntity.status(404).body(exception.toMap());
 		}
 		catch (Exception exception)
 		{
