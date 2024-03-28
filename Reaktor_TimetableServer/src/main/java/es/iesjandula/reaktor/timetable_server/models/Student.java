@@ -21,6 +21,9 @@ public class Student implements Comparable<Student>
 	
 	/** Attribute course*/
 	private String course;
+	
+	/** Attribute numBathroom */
+	private int numBathroom;
 
 	/**
 	 * Method compareTo with personal preferences (by lastName)

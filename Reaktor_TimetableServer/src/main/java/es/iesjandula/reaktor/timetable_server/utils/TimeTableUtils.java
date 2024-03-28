@@ -268,7 +268,7 @@ public class TimeTableUtils
 				splitDatos[2] = splitDatos[2].trim();
 				splitDatos[2] = splitDatos[2].substring(1, splitDatos[2].length()-1);
 				
-				students.add(new Student(splitDatos[1],splitDatos[0],splitDatos[2]));
+				students.add(new Student(splitDatos[1],splitDatos[0],splitDatos[2],0));
 			}
 		}
 		return students;
@@ -306,6 +306,35 @@ public class TimeTableUtils
 		Arrays.sort(sortStudent);
 		
 		return sortStudent;
+	}
+	
+	/**
+	 * Metodo que busca a un estudiante por su nombre,apellidos y curso
+	 * @param name
+	 * @param lastName
+	 * @param course
+	 * @param students
+	 * @return estudiante encontrado
+	 */
+	public Student findStudent (String name,String lastName,String course,List<Student> students)
+	{
+		Student student = null;
+		int index = 0;
+		boolean out = false;
+		
+		while(index<students.size() && !out)
+		{
+			Student item = students.get(index);
+			
+			if(item.getName().equals(name) && item.getLastName().equals(lastName) && item.getCourse().equals(course))
+			{
+				student = item;
+				out = true;
+			}
+			
+			index++;
+		}
+		return student;
 	}
 	
 }

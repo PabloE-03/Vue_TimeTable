@@ -1912,8 +1912,7 @@ public class TimetableRest
 		try
 		{
 
-			Student student = new Student(name, lastname, course);
-
+			Student student = this.util.findStudent(name, lastname, course, this.students);
 			// GET THE CURRENT TIME
 			LocalDateTime currentDateTime = LocalDateTime.now();
 
@@ -1964,7 +1963,7 @@ public class TimetableRest
 	{
 		try
 		{
-			Student student = new Student(name, lastname, course);
+			Student student = this.util.findStudent(name, lastname, course, this.students);
 			// GET THE CURRENT TIME
 			LocalDateTime currentDateTime = LocalDateTime.now();
 
