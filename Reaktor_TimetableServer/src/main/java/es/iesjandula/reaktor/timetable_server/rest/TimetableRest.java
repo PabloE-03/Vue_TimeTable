@@ -1904,9 +1904,9 @@ public class TimetableRest
 	 */
 	@RequestMapping(method = RequestMethod.POST, value = "/student/visita/bathroom")
 	public ResponseEntity<?> postVisit(
-			@RequestHeader(required = true) String name,
-			@RequestHeader(required = true) String lastname, 
-			@RequestHeader(required = true) String course,
+			@RequestParam(required = true,name = "name") String name,
+			@RequestParam(required = true,name = "lastName") String lastname, 
+			@RequestParam(required = true,name = "course") String course,
 			HttpSession session)
 	{
 		try
@@ -1942,9 +1942,9 @@ public class TimetableRest
 	 */
 	@RequestMapping(method = RequestMethod.POST, value = "/student/regreso/bathroom")
 	public ResponseEntity<?> postReturnBathroom(
-			@RequestHeader(required = true) String name,
-			@RequestHeader(required = true) String lastname, 
-			@RequestHeader(required = true) String course,
+			@RequestParam(required = true,name = "name") String name,
+			@RequestParam(required = true,name = "lastName") String lastname, 
+			@RequestParam(required = true,name = "course") String course,
 			HttpSession session)
 	{
 		try
@@ -1982,21 +1982,25 @@ public class TimetableRest
 	 */
 	@RequestMapping(method = RequestMethod.GET, value = "/get/veces/visitado/studentFechas", produces = "application/json")
 	public ResponseEntity<?> getNumberVisitsBathroom(
-			@RequestHeader(required = true) String name,
-			@RequestHeader(required = true) String lastname,
-			@RequestHeader(required = true) String fechaInicio,
-			@RequestHeader(required = true) String fechaEnd, HttpSession session)
+			@RequestParam(required = true,name = "name") String name,
+			@RequestParam(required = true,name = "lastName") String lastname,
+			@RequestParam(required = true,name = "course") String course,
+			@RequestParam(required = true,name = "fechaInicio") String fechaInicio,
+			@RequestParam(required = true,name = "fechaFin") String fechaEnd, HttpSession session)
 	{
 		try
 		{
-			// CONCAT NAME WITH LASTNAME TO GET A UNIC KEY
-			String studentNameLastname = name + " " + lastname;
-			// PARSE STRING TO DATE
-			LocalDate startDate = LocalDate.parse(fechaInicio);
-			LocalDate endDate = LocalDate.parse(fechaEnd);
-			// CALL METHOD TO COUNT THE VISITS
-			int visitCount = this.getVisitsInRange(session, studentNameLastname, startDate, endDate);
-			return ResponseEntity.ok().body("Número de visitas del alumno: " + visitCount);
+			//Obtenemos el estudiante por su nombre apellido y curso
+			Student student = this.util.findStudent(name, lastname, course, this.students);
+			
+			List<Map<String,String>> visitasAlumno = this.util.getVisitaAlumno(student, fechaInicio, fechaEnd, this.logVisitas);
+			
+			//Establecemos dos tipos de respuesta, una correcta si la lista contiene datos y un error en caso contrario
+			ResponseEntity<?> respuesta = !visitasAlumno.isEmpty() ? ResponseEntity.ok().body(visitasAlumno) 
+			: ResponseEntity.status(404).body("El alumno no ha ido en el periodo "+fechaInicio+" - "+fechaEnd+" al servicio");
+			
+			//Devolvemos una de las dos respuestas
+			return respuesta;
 
 		}
 		catch (Exception exception)
@@ -2017,19 +2021,20 @@ public class TimetableRest
 	 */
 	@RequestMapping(method = RequestMethod.GET, value = "/get/students/visitas/bathroom", produces = "application/json")
 	public ResponseEntity<?> getListTimesBathroom(
-			@RequestHeader(required = true) String fechaInicio,
-			@RequestHeader(required = true) String fechaEnd,
+			@RequestParam(required = true,name="fechaInicio") String fechaInicio,
+			@RequestParam(required = true,name="fechaFin") String fechaEnd,
 			HttpSession session)
 	{
 		try
 		{
-			// PARSE STRING TO DATES
-			LocalDate startDate = LocalDate.parse(fechaInicio);
-			LocalDate endDate = LocalDate.parse(fechaEnd);
-			// SAVE THE RESPONSE OF THE METHOD IN A MAP
-			Map<String, Integer> studentVisitsMap = this.getStudentVisitsMap(session, startDate, endDate);
-
-			return ResponseEntity.ok().body(studentVisitsMap);
+			List<Map<String,Object>> visitas = this.util.getVisitasAlumnos(fechaInicio, fechaEnd,this.logVisitas);
+			
+			//Establecemos dos tipos de respuesta, una correcta si la lista contiene datos y un error en caso contrario
+			ResponseEntity<?> respuesta = !visitas.isEmpty() ? ResponseEntity.ok().body(visitas) 
+			: ResponseEntity.status(404).body("El alumno no ha ido en el periodo "+fechaInicio+" - "+fechaEnd+" al servicio");
+			
+			//Devolvemos una de las dos respuestas
+			return respuesta;
 		}
 		catch (Exception exception)
 		{
@@ -3298,6 +3303,8 @@ public class TimetableRest
 					courseStudent.add((student.getCourse()));
 				}
 			}
+			
+			Collections.sort(courseStudent);
 			
 			return ResponseEntity.ok().body(courseStudent);
 		}

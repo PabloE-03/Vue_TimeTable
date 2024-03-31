@@ -4,8 +4,10 @@ import java.io.File;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -444,9 +446,6 @@ public class TimeTableUtils
 			if(item.equals(student))
 			{
 				students.remove(index);
-				int numBathroom = student.getNumBathroom();
-				numBathroom++;
-				student.setNumBathroom(numBathroom);
 				students.add(student);
 				out = true;
 			}
@@ -467,7 +466,7 @@ public class TimeTableUtils
 		
 		for(int i=0;i<students.size();i++)
 		{
-			sortStudents = Arrays.copyOf(sortStudents, i++);
+			sortStudents = Arrays.copyOf(sortStudents, i+1);
 			sortStudents[i] = students.get(i);
 		}
 		
@@ -475,5 +474,270 @@ public class TimeTableUtils
 		
 		return sortStudents;
 	}
+	
+	/**
+	 * Metodo que busca las visitas al baño de un determinado alumno usando
+	 * un periodo de fechas, los datos se devuelven en una lista de mapas de formato
+	 * String String en el que en cada item se guarda el dia y la hora en la que se fue
+	 * al baño 
+	 * @param student
+	 * @param fechaInicio
+	 * @param fechaFin
+	 * @param visitas
+	 * @return lista de mapas en formato String,String que guarda en cada item el dia y la hora en la que se fue al baño
+	 */
+	public List<Map<String,String>> getVisitaAlumno(Student student,String fechaInicio,String fechaFin,List<Visitas> visitas)
+	{
+		List<Map<String,String>> visitaAlumno = new LinkedList<Map<String,String>>();
+		
+		List<Visitas> visitasAlumno = this.findVisitasAlumno(student, visitas);
+		
+		//Separador de fecha en dia mes year
+		String[] splitFecha = fechaInicio.split("/");
+		
+		//Array de fechas en formato int
+		int[] fechaInt = {Integer.parseInt(splitFecha[0].trim()),Integer.parseInt(splitFecha[1].trim()),Integer.parseInt(splitFecha[2].trim())};
+		
+		boolean endParser = false;
+		
+		//Bucle para iterar y guardar los dias y horas en los que el alumno ha ido al baño
+		while(!endParser)
+		{
+			//Transformamos la fecha a string
+			String itemDate = this.transformDate(fechaInt);
+			
+			//Iteramos las visitas
+			for(Visitas item:visitasAlumno)
+			{
+				LocalDateTime date = item.getDate();
+				//Nos quedamos solo con las que coincida la fecha
+				if(this.compareDate(itemDate, date))
+				{
+					//Anotamos la fecha y la hora con las que ha ido al baño
+					Map<String,String> datosVisita = new HashMap<String,String>();
+					datosVisita.put("dia",itemDate);
+					datosVisita.put("hora", this.parseTime(date.getHour())+":"+this.parseTime(date.getMinute()));
+					visitaAlumno.add(datosVisita);
+				}
+			}
+			
+			//Comprobamos si la fecha iterada coincide con la fecha final si no la aumentamos
+			if(itemDate.equals(fechaFin))
+			{
+				endParser = true;
+			}
+			else
+			{
+				fechaInt = this.sumarDate(fechaInt);
+			}
+		}
+ 		
+		return visitaAlumno;
+	}
  	
+	/**
+	 * Metodo que busca las visitas de varios alumnos
+	 * @param fechaInicio
+	 * @param fechaFin
+	 * @param visitas
+	 * @return
+	 */
+	public List<Map<String,Object>> getVisitasAlumnos(String fechaInicio,String fechaFin,List<Visitas> visitas)
+	{
+		List<Map<String,Object>> visitasAlumnos = new LinkedList<Map<String,Object>>();
+		
+		//Separador de fecha en dia mes year
+		String[] splitFecha = fechaInicio.split("/");
+		
+		//Array de fechas en formato int
+		int[] fechaInt = {Integer.parseInt(splitFecha[0].trim()),Integer.parseInt(splitFecha[1].trim()),Integer.parseInt(splitFecha[2].trim())};
+		
+		boolean endParser = false;
+		
+		//Bucle para iterar y guardar los dias y horas en los que el alumno ha ido al baño
+		while(!endParser)
+		{
+			//Transformamos la fecha a string
+			String itemDate = this.transformDate(fechaInt);
+			
+			//Iteramos las visitas
+			for(Visitas item:visitas)
+			{
+				LocalDateTime date = item.getDate();
+				//Nos quedamos solo con las que coincida la fecha
+				if(this.compareDate(itemDate, date))
+				{
+					//Anotamos la fecha y la hora con las que ha ido al baño
+					Map<String,Object> datosVisita = new HashMap<String,Object>();
+					datosVisita.put("alumno",item.getStudent());
+					datosVisita.put("dia", itemDate);
+					datosVisita.put("veces", item.getStudent().getNumBathroom());
+					visitasAlumnos.add(datosVisita);
+				}
+			}
+			
+			//Comprobamos si la fecha iterada coincide con la fecha final si no la aumentamos
+			if(itemDate.equals(fechaFin))
+			{
+				endParser = true;
+			}
+			else
+			{
+				fechaInt = this.sumarDate(fechaInt);
+			}
+		}
+		return visitasAlumnos;
+				
+	}
+	
+	/**
+	 * Metodo que busca las visitas al baño de un alumno en concreto
+	 * @param student
+	 * @param visitas
+	 * @return visitas del alumno introducido encontradas
+	 */
+	private List<Visitas> findVisitasAlumno(Student student,List<Visitas>visitas)
+	{
+		List<Visitas> visitasAlumno = new LinkedList<Visitas>();
+		
+		for(Visitas item:visitas)
+		{
+			if(item.getStudent().equals(student))
+			{
+				visitasAlumno.add(item);
+			}
+		}
+		
+		return visitasAlumno;
+	}
+	/**
+	 * Metodo que transforma la fecha en entero a una fecha en string añadiendo
+	 * 0 en la fecha en caso de que un valor del entero este comprendido entre
+	 * 1 y 9
+	 * @param dateInt
+	 * @return fecha en formato string
+	 */
+	private String transformDate(int[]fechaInt)
+	{
+		String fechaString = "";
+		
+		if((fechaInt[0]>0 && fechaInt[0]<10) && (fechaInt[1]>0 && fechaInt[1]<10))
+		{
+			fechaString = "0"+fechaInt[0]+"/0"+fechaInt[1]+"/"+fechaInt[2];
+		}
+		else if(fechaInt[0]>0 && fechaInt[0]<10)
+		{
+			fechaString = "0"+fechaInt[0]+"/"+fechaInt[1]+"/"+fechaInt[2];
+		}
+		else if(fechaInt[1]>0 && fechaInt[1]<10)
+		{
+			fechaString = fechaInt[0]+"/0"+fechaInt[1]+"/"+fechaInt[2];
+		}
+		else
+		{
+			fechaString = fechaInt[0]+"/"+fechaInt[1]+"/"+fechaInt[2];
+		}
+		
+		return fechaString;
+	}
+	
+	/**
+	 * Metodo que comprueba que dos fechas sean iguales para recoger los
+	 * datos de la fecha en la que un alumno fue al baño
+	 * @param fecha
+	 * @param fechaReal
+	 * @return true si son iguales false si no
+	 */
+	private boolean compareDate(String fecha,LocalDateTime fechaReal)
+	{
+		int [] fechaInt = {fechaReal.getDayOfMonth(),fechaReal.getMonthValue(),fechaReal.getYear()};
+		
+		String otherFecha = this.transformDate(fechaInt);
+		
+		return fecha.equals(otherFecha);
+	}
+	
+	/**
+	 * Metodo que suma la fecha en uno y comprueba los saltos de meses y años
+	 * @param dateInt
+	 * @return nueva fecha en array de enteros
+	 */
+	private int [] sumarDate(int[]dateInt)
+	{
+		int [] newFecha = null;
+		
+		switch(dateInt[1])
+		{
+			case 1,3,5,7,8,10,12:
+			{
+				dateInt[0]++;
+				if(dateInt[0]>31)
+				{
+					dateInt[1]++;
+					dateInt[0] = 1;
+					if(dateInt[1]>12)
+					{
+						dateInt[2]++;
+						dateInt[1] = 1;
+					}
+				}
+				newFecha = dateInt;
+				break;
+			}
+			case 4,6,9,11:
+			{
+				dateInt[0]++;
+				if(dateInt[0]>31)
+				{
+					dateInt[1]++;
+					dateInt[0] = 1;
+				}
+				newFecha = dateInt;
+				break;
+			}
+			case 2:
+			{
+				boolean bisiesto = dateInt[2]%4==0;
+				dateInt[0]++;
+				if(bisiesto && dateInt[0]>29)
+				{
+					dateInt[1]++;
+					dateInt[0] = 1;
+				}
+				else if(dateInt[0]>28 && !bisiesto)
+				{
+					dateInt[1]++;
+					dateInt[0] = 1;
+				}
+				newFecha = dateInt;
+				break;
+			}
+		}
+		
+		return newFecha;
+	}
+	
+	/**
+	 * Metodo que parsea los minutos y las horas de entero a string
+	 * en caso de que vengan dados en numeros entre 1 y 9 se le coloca un 0 detras
+	 * por ejemplo si una hora viene en 4 se parsea a 04
+	 * @param hour
+	 * @return hora parseada
+	 */
+	private String parseTime(int hour)
+	{
+		String newHour = ""+hour;
+		
+		if(hour>0 && hour<10)
+		{
+			newHour = "0"+hour;
+		}
+		
+		return newHour;
+	}
+	
 }
+
+
+
+
