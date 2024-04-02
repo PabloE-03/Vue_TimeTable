@@ -3,3 +3,5 @@ spring:
         active: default
 server:
     port: 8088
+
+urlCors: http://localhost:5173
