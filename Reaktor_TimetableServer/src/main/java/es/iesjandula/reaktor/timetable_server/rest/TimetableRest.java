@@ -97,6 +97,9 @@ public class TimetableRest
 	/**Lista de visitas al baño por los estudiantes */
 	private List<Visitas> logVisitas;
 	
+	/**Lista de los planos de las aulas */
+	private List<AulaPlano> aulas;
+	
 	public TimetableRest()
 	{
 		this.util = new TimeTableUtils();
@@ -3626,13 +3629,37 @@ public class TimetableRest
 		}
 	}
 	
+	@RequestMapping(method = RequestMethod.POST, value = "send/csv-planos",consumes = "multipart/form-data")
+	public ResponseEntity<?> loadPlanos(@RequestPart( name="csvFile",required = true)MultipartFile csvFile)
+	{
+		try
+		{
+			byte [] content = csvFile.getBytes();
+			if(!csvFile.getOriginalFilename().endsWith(".csv"))
+			{
+				throw new HorariosError(406,"El fichero no es un csv");
+			}
+			this.aulas = this.util.parseAulasPlano(content);
+			return ResponseEntity.ok().body(aulas);
+		}
+		catch(HorariosError exception)
+		{
+			log.error("El fichero introducido no contiene los datos de los planos bien formados",exception);
+			return ResponseEntity.status(406).body(exception.toMap());
+		}
+		catch(Exception exception)
+		{
+			log.error("Error de servidor",exception);
+			return ResponseEntity.status(500).body("Error de servidor "+exception.getStackTrace());
+		}
+	}
+	
 	@RequestMapping(method = RequestMethod.GET, value = "/get/classroom-planos",produces = "application/json")
 	public ResponseEntity<?> getAllClassroom(@RequestParam(name = "planta",required = true)String planta)
 	{ 
 		try
 		{
-			List<AulaPlano> aulas = this.util.rellenarAulasPlano();
-			return ResponseEntity.ok().body(this.util.buscarPorPlanta(planta,aulas));	
+			return ResponseEntity.ok().body(this.util.buscarPorPlanta(planta,this.aulas));	
 		}
 		catch(HorariosError exception)
 		{
