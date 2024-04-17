@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Grupo
+public class Grupo implements Comparable<Grupo>
 {
 	/** Attribute numIntGr*/
 	private String numIntGr;
@@ -21,4 +21,12 @@ public class Grupo
 	
 	/** Attribute nombre*/
 	private String nombre;
+
+	@Override
+	public int compareTo(Grupo other) {
+
+		return this.nombre.compareTo(other.nombre);
+	}
+	
+	
 }

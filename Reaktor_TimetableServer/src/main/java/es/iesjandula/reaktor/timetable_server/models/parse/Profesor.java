@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Profesor
+public class Profesor implements Comparable<Profesor>
 {
 	/** Attribute numIntPR*/
 	private String numIntPR;
@@ -27,4 +27,20 @@ public class Profesor
 	
 	/** Attribute segundoApellido*/
 	private String segundoApellido;
+
+	@Override
+	public int compareTo(Profesor other) {
+		if(this.primerApellido.compareTo(other.primerApellido)!=0)
+		{
+			return this.primerApellido.compareTo(other.primerApellido);
+		}
+		else if(this.segundoApellido.compareTo(other.segundoApellido)!=0)
+		{
+			return this.segundoApellido.compareTo(other.segundoApellido);
+		}
+		else
+		{
+			return this.nombre.compareTo(other.nombre);
+		}
+	}
 }
