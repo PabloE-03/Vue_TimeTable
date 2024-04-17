@@ -1,0 +1,1042 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<CENTRO nombre_centro="I.E.S. 'Jándula' ANDÚJAR" autor="HORW" fecha="03/04/2024 08:48:09">
+  <DATOS>
+    <ASIGNATURAS tot_as="20">
+      <ASIGNATURA num_int_as="1" abreviatura="PROG6" nombre="PROGRAMACIÓN 6 HORAS" />
+      <ASIGNATURA num_int_as="2" abreviatura="ENTOR" nombre="ENTORNOS DE DESARROLLO" />
+      <ASIGNATURA num_int_as="3" abreviatura="SINFO" nombre="SISTEMAS INFORMÁTICOS" />
+      <ASIGNATURA num_int_as="4" abreviatura="BBDD1" nombre="BASES DE DATOS 1 HORA" />
+      <ASIGNATURA num_int_as="5" abreviatura="MARCA" nombre="LENGUAJE DE MARCAS" />
+      <ASIGNATURA num_int_as="6" abreviatura="FOL" nombre="FORMACIÓN Y ORIENTACIÓN LABORAL" />
+      <ASIGNATURA num_int_as="7" abreviatura="DWEC" nombre="DESARROLLO WEB EN ENTORNO CLIENTE" />
+      <ASIGNATURA num_int_as="8" abreviatura="DWES" nombre="DESARROLLO WEB ENTORNO SERVIDOR" />
+      <ASIGNATURA num_int_as="9" abreviatura="DESPA" nombre="DESPLIEGUE APLICACIONES WEB" />
+      <ASIGNATURA num_int_as="10" abreviatura="HLC1" nombre="HORAS DE LIBRE CONFIGURACIÓN 1 HORA" />
+      <ASIGNATURA num_int_as="11" abreviatura="DIWEB" nombre="DESARROLLO INTERFACES WEB" />
+      <ASIGNATURA num_int_as="12" abreviatura="EIE" nombre="EMPRESA E INICIATIVA EMPRENDEDORA" />
+      <ASIGNATURA num_int_as="13" abreviatura="HLC2" nombre="HORA LIBRE CONFIGURACIÓN 2 HORAS" />
+      <ASIGNATURA num_int_as="14" abreviatura="DG2Y3" nombre="DISEÑO GRÁFICO 2D Y 3D" />
+      <ASIGNATURA num_int_as="15" abreviatura="DGPP" nombre="DISEÑO, GESTIÓN, PUBICACIÓN Y PRODU" />
+      <ASIGNATURA num_int_as="16" abreviatura="PRED" nombre="PROGRAMACIÓN EN RED E INTELIGENCIA" />
+      <ASIGNATURA num_int_as="17" abreviatura="PMV" nombre="PROGRAMACIÓN Y MOTORES VIDEOJUEGOS" />
+      <ASIGNATURA num_int_as="18" abreviatura="RVRA" nombre="REALIDAD VIRTUAL Y REALIDAD AUMENTA" />
+      <ASIGNATURA num_int_as="19" abreviatura="BBDD5" nombre="BASES DE DATOS 5 HORAS" />
+      <ASIGNATURA num_int_as="20" abreviatura="PROG2" nombre="PROGRAMACIÓN 2 HORAS" />
+    </ASIGNATURAS>
+    <GRUPOS tot_gr="3">
+      <GRUPO num_int_gr="1" abreviatura="2 DAW" nombre="2 DAW" />
+      <GRUPO num_int_gr="2" abreviatura="CURSO" nombre="CURSO-DVR" />
+      <GRUPO num_int_gr="3" abreviatura="1 DAW" nombre="1 DAW" />
+    </GRUPOS>
+    <AULAS tot_au="3">
+      <AULA num_int_au="2" abreviatura="0.3" nombre="Aula en lado suroeste de pasillo la" />
+      <AULA num_int_au="3" abreviatura="0.7" nombre="AULA DE 2FPB" />
+      <AULA num_int_au="4" abreviatura="0.5" nombre="Aula de 1º DAM" />
+    </AULAS>
+    <PROFESORES tot_pr="8">
+      <PROFESOR num_int_pr="2" abreviatura="MPL" nombre="Pérez López, Manuel" />
+      <PROFESOR num_int_pr="3" abreviatura="PBP" nombre="Benítez Perea, Pedro" />
+      <PROFESOR num_int_pr="4" abreviatura="PDT" nombre="De Tarde, Profe" />
+      <PROFESOR num_int_pr="5" abreviatura="SMA" nombre="Mengíbar Artichuela, Sergio" />
+      <PROFESOR num_int_pr="6" abreviatura="FBJ" nombre="Belmonte Jiménez, Francisco" />
+      <PROFESOR num_int_pr="7" abreviatura="JAO" nombre="Andújar Oliver, José Manuel" />
+      <PROFESOR num_int_pr="8" abreviatura="RRG" nombre="Del Río Gutiérrez, Rocío" />
+      <PROFESOR num_int_pr="9" abreviatura="RCG" nombre="Chica Gómez, Rosario" />
+    </PROFESORES>
+    <TRAMOS_HORARIOS tot_tr="35">
+      <TRAMO num_tr="1" numero_dia="1" hora_inicio="15:00" hora_final="16:00" />
+      <TRAMO num_tr="2" numero_dia="1" hora_inicio="16:00" hora_final="17:00" />
+      <TRAMO num_tr="3" numero_dia="1" hora_inicio="17:00" hora_final="18:00" />
+      <TRAMO num_tr="4" numero_dia="1" hora_inicio="18:00" hora_final="18:30" />
+      <TRAMO num_tr="5" numero_dia="1" hora_inicio="18:30" hora_final="19:30" />
+      <TRAMO num_tr="6" numero_dia="1" hora_inicio="19:30" hora_final="20:30" />
+      <TRAMO num_tr="7" numero_dia="1" hora_inicio="20:30" hora_final="21:30" />
+      <TRAMO num_tr="8" numero_dia="2" hora_inicio="15:00" hora_final="16:00" />
+      <TRAMO num_tr="9" numero_dia="2" hora_inicio="16:00" hora_final="17:00" />
+      <TRAMO num_tr="10" numero_dia="2" hora_inicio="17:00" hora_final="18:00" />
+      <TRAMO num_tr="11" numero_dia="2" hora_inicio="18:00" hora_final="18:30" />
+      <TRAMO num_tr="12" numero_dia="2" hora_inicio="18:30" hora_final="19:30" />
+      <TRAMO num_tr="13" numero_dia="2" hora_inicio="19:30" hora_final="20:30" />
+      <TRAMO num_tr="14" numero_dia="2" hora_inicio="20:30" hora_final="21:30" />
+      <TRAMO num_tr="15" numero_dia="3" hora_inicio="15:00" hora_final="16:00" />
+      <TRAMO num_tr="16" numero_dia="3" hora_inicio="16:00" hora_final="17:00" />
+      <TRAMO num_tr="17" numero_dia="3" hora_inicio="17:00" hora_final="18:00" />
+      <TRAMO num_tr="18" numero_dia="3" hora_inicio="18:00" hora_final="18:30" />
+      <TRAMO num_tr="19" numero_dia="3" hora_inicio="18:30" hora_final="19:30" />
+      <TRAMO num_tr="20" numero_dia="3" hora_inicio="19:30" hora_final="20:30" />
+      <TRAMO num_tr="21" numero_dia="3" hora_inicio="20:30" hora_final="21:30" />
+      <TRAMO num_tr="22" numero_dia="4" hora_inicio="15:00" hora_final="16:00" />
+      <TRAMO num_tr="23" numero_dia="4" hora_inicio="16:00" hora_final="17:00" />
+      <TRAMO num_tr="24" numero_dia="4" hora_inicio="17:00" hora_final="18:00" />
+      <TRAMO num_tr="25" numero_dia="4" hora_inicio="18:00" hora_final="18:30" />
+      <TRAMO num_tr="26" numero_dia="4" hora_inicio="18:30" hora_final="19:30" />
+      <TRAMO num_tr="27" numero_dia="4" hora_inicio="19:30" hora_final="20:30" />
+      <TRAMO num_tr="28" numero_dia="4" hora_inicio="20:30" hora_final="21:30" />
+      <TRAMO num_tr="29" numero_dia="5" hora_inicio="15:00" hora_final="16:00" />
+      <TRAMO num_tr="30" numero_dia="5" hora_inicio="16:00" hora_final="17:00" />
+      <TRAMO num_tr="31" numero_dia="5" hora_inicio="17:00" hora_final="18:00" />
+      <TRAMO num_tr="32" numero_dia="5" hora_inicio="18:00" hora_final="18:30" />
+      <TRAMO num_tr="33" numero_dia="5" hora_inicio="18:30" hora_final="19:30" />
+      <TRAMO num_tr="34" numero_dia="5" hora_inicio="19:30" hora_final="20:30" />
+      <TRAMO num_tr="35" numero_dia="5" hora_inicio="20:30" hora_final="21:30" />
+    </TRAMOS_HORARIOS>
+  </DATOS>
+  <HORARIOS>
+    <HORARIOS_ASIGNATURAS>
+      <HORARIO_ASIG hor_num_int_as="1" tot_un="6" tot_ac="6">
+        <ACTIVIDAD num_act="1" num_un="1" tramo="20" aula="4" profesor="3">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="2" num_un="2" tramo="21" aula="4" profesor="3">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="3" num_un="3" tramo="27" aula="4" profesor="3">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="4" num_un="4" tramo="26" aula="4" profesor="3">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="5" num_un="5" tramo="29" aula="4" profesor="3">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="6" num_un="6" tramo="30" aula="4" profesor="3">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+      </HORARIO_ASIG>
+      <HORARIO_ASIG hor_num_int_as="2" tot_un="3" tot_ac="3">
+        <ACTIVIDAD num_act="1" num_un="7" tramo="34" aula="4" profesor="3">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="2" num_un="8" tramo="35" aula="4" profesor="3">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="3" num_un="9" tramo="28" aula="4" profesor="3">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+      </HORARIO_ASIG>
+      <HORARIO_ASIG hor_num_int_as="3" tot_un="6" tot_ac="6">
+        <ACTIVIDAD num_act="1" num_un="37" tramo="13" aula="4" profesor="4">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="2" num_un="38" tramo="14" aula="4" profesor="4">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="3" num_un="39" tramo="12" aula="4" profesor="4">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="4" num_un="40" tramo="3" aula="4" profesor="4">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="5" num_un="41" tramo="1" aula="4" profesor="4">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="6" num_un="42" tramo="2" aula="4" profesor="4">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+      </HORARIO_ASIG>
+      <HORARIO_ASIG hor_num_int_as="4" tot_un="1" tot_ac="1">
+        <ACTIVIDAD num_act="1" num_un="43" tramo="5" aula="4" profesor="6">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+      </HORARIO_ASIG>
+      <HORARIO_ASIG hor_num_int_as="5" tot_un="4" tot_ac="4">
+        <ACTIVIDAD num_act="1" num_un="33" tramo="23" aula="4" profesor="5">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="2" num_un="34" tramo="22" aula="4" profesor="5">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="3" num_un="35" tramo="16" aula="4" profesor="5">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="4" num_un="36" tramo="15" aula="4" profesor="5">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+      </HORARIO_ASIG>
+      <HORARIO_ASIG hor_num_int_as="6" tot_un="3" tot_ac="3">
+        <ACTIVIDAD num_act="1" num_un="78" tramo="8" aula="4" profesor="9">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="2" num_un="79" tramo="9" aula="4" profesor="9">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="3" num_un="80" tramo="10" aula="4" profesor="9">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+      </HORARIO_ASIG>
+      <HORARIO_ASIG hor_num_int_as="7" tot_un="6" tot_ac="6">
+        <ACTIVIDAD num_act="1" num_un="54" tramo="15" aula="3" profesor="2">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="2" num_un="55" tramo="16" aula="3" profesor="2">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="3" num_un="56" tramo="7" aula="3" profesor="2">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="4" num_un="57" tramo="6" aula="3" profesor="2">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="5" num_un="58" tramo="23" aula="3" profesor="2">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="6" num_un="59" tramo="22" aula="3" profesor="2">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+      </HORARIO_ASIG>
+      <HORARIO_ASIG hor_num_int_as="8" tot_un="8" tot_ac="8">
+        <ACTIVIDAD num_act="1" num_un="19" tramo="17" aula="3" profesor="5">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="2" num_un="20" tramo="19" aula="3" profesor="5">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="3" num_un="21" tramo="9" aula="3" profesor="5">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="4" num_un="22" tramo="8" aula="3" profesor="5">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="5" num_un="23" tramo="26" aula="3" profesor="5">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="6" num_un="24" tramo="24" aula="3" profesor="5">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="7" num_un="25" tramo="3" aula="3" profesor="5">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="8" num_un="26" tramo="5" aula="3" profesor="5">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+      </HORARIO_ASIG>
+      <HORARIO_ASIG hor_num_int_as="9" tot_un="3" tot_ac="3">
+        <ACTIVIDAD num_act="1" num_un="60" tramo="33" aula="3" profesor="4">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="2" num_un="61" tramo="31" aula="3" profesor="4">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="3" num_un="62" tramo="20" aula="3" profesor="4">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+      </HORARIO_ASIG>
+      <HORARIO_ASIG hor_num_int_as="10" tot_un="1" tot_ac="1">
+        <ACTIVIDAD num_act="1" num_un="77" tramo="21" aula="3" profesor="4">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+      </HORARIO_ASIG>
+      <HORARIO_ASIG hor_num_int_as="11" tot_un="6" tot_ac="6">
+        <ACTIVIDAD num_act="1" num_un="27" tramo="29" aula="3" profesor="5">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="2" num_un="28" tramo="30" aula="3" profesor="5">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="3" num_un="29" tramo="1" aula="3" profesor="5">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="4" num_un="30" tramo="2" aula="3" profesor="5">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="5" num_un="31" tramo="12" aula="3" profesor="5">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="6" num_un="32" tramo="10" aula="3" profesor="5">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+      </HORARIO_ASIG>
+      <HORARIO_ASIG hor_num_int_as="12" tot_un="4" tot_ac="4">
+        <ACTIVIDAD num_act="1" num_un="63" tramo="27" aula="3" profesor="4">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="2" num_un="64" tramo="28" aula="3" profesor="4">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="3" num_un="65" tramo="35" aula="3" profesor="4">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="4" num_un="66" tramo="34" aula="3" profesor="4">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+      </HORARIO_ASIG>
+      <HORARIO_ASIG hor_num_int_as="13" tot_un="2" tot_ac="2">
+        <ACTIVIDAD num_act="1" num_un="12" tramo="13" aula="3" profesor="3">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="2" num_un="13" tramo="14" aula="3" profesor="3">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+      </HORARIO_ASIG>
+      <HORARIO_ASIG hor_num_int_as="14" tot_un="4" tot_ac="4">
+        <ACTIVIDAD num_act="1" num_un="67" tramo="19" aula="2" profesor="4">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="2" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="2" num_un="68" tramo="8" aula="2" profesor="4">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="2" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="3" num_un="69" tramo="9" aula="2" profesor="4">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="2" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="4" num_un="70" tramo="26" aula="2" profesor="4">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="2" />
+        </ACTIVIDAD>
+      </HORARIO_ASIG>
+      <HORARIO_ASIG hor_num_int_as="15" tot_un="5" tot_ac="5">
+        <ACTIVIDAD num_act="1" num_un="14" tramo="31" aula="2" profesor="3">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="2" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="2" num_un="15" tramo="33" aula="2" profesor="3">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="2" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="3" num_un="16" tramo="10" aula="2" profesor="3">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="2" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="4" num_un="17" tramo="12" aula="2" profesor="3">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="2" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="5" num_un="18" tramo="5" aula="2" profesor="3">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="2" />
+        </ACTIVIDAD>
+      </HORARIO_ASIG>
+      <HORARIO_ASIG hor_num_int_as="16" tot_un="3" tot_ac="3">
+        <ACTIVIDAD num_act="1" num_un="71" tramo="23" aula="2" profesor="7">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="2" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="2" num_un="72" tramo="22" aula="2" profesor="7">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="2" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="3" num_un="73" tramo="15" aula="2" profesor="7">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="2" />
+        </ACTIVIDAD>
+      </HORARIO_ASIG>
+      <HORARIO_ASIG hor_num_int_as="17" tot_un="5" tot_ac="5">
+        <ACTIVIDAD num_act="1" num_un="49" tramo="29" aula="2" profesor="8">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="2" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="2" num_un="50" tramo="30" aula="2" profesor="8">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="2" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="3" num_un="51" tramo="2" aula="2" profesor="8">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="2" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="4" num_un="52" tramo="3" aula="2" profesor="8">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="2" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="5" num_un="53" tramo="1" aula="2" profesor="8">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="2" />
+        </ACTIVIDAD>
+      </HORARIO_ASIG>
+      <HORARIO_ASIG hor_num_int_as="18" tot_un="3" tot_ac="3">
+        <ACTIVIDAD num_act="1" num_un="74" tramo="16" aula="2" profesor="7">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="2" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="2" num_un="75" tramo="17" aula="2" profesor="7">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="2" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="3" num_un="76" tramo="24" aula="2" profesor="7">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="2" />
+        </ACTIVIDAD>
+      </HORARIO_ASIG>
+      <HORARIO_ASIG hor_num_int_as="19" tot_un="5" tot_ac="5">
+        <ACTIVIDAD num_act="1" num_un="44" tramo="31" aula="4" profesor="6">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="2" num_un="45" tramo="33" aula="4" profesor="6">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="3" num_un="46" tramo="17" aula="4" profesor="6">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="4" num_un="47" tramo="19" aula="4" profesor="6">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="5" num_un="48" tramo="24" aula="4" profesor="6">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+      </HORARIO_ASIG>
+      <HORARIO_ASIG hor_num_int_as="20" tot_un="2" tot_ac="2">
+        <ACTIVIDAD num_act="1" num_un="10" tramo="6" aula="4" profesor="3">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="2" num_un="11" tramo="7" aula="4" profesor="3">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+      </HORARIO_ASIG>
+    </HORARIOS_ASIGNATURAS>
+    <HORARIOS_GRUPOS>
+      <HORARIO_GRUP hor_num_int_gr="1" tot_un="30" tot_ac="30">
+        <ACTIVIDAD num_act="1" num_un="12" tramo="13" asignatura="13" aula="3" profesor="3">
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="2" num_un="13" tramo="14" asignatura="13" aula="3" profesor="3">
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="3" num_un="19" tramo="17" asignatura="8" aula="3" profesor="5">
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="4" num_un="20" tramo="19" asignatura="8" aula="3" profesor="5">
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="5" num_un="21" tramo="9" asignatura="8" aula="3" profesor="5">
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="6" num_un="22" tramo="8" asignatura="8" aula="3" profesor="5">
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="7" num_un="23" tramo="26" asignatura="8" aula="3" profesor="5">
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="8" num_un="24" tramo="24" asignatura="8" aula="3" profesor="5">
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="9" num_un="25" tramo="3" asignatura="8" aula="3" profesor="5">
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="10" num_un="26" tramo="5" asignatura="8" aula="3" profesor="5">
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="11" num_un="27" tramo="29" asignatura="11" aula="3" profesor="5">
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="12" num_un="28" tramo="30" asignatura="11" aula="3" profesor="5">
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="13" num_un="29" tramo="1" asignatura="11" aula="3" profesor="5">
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="14" num_un="30" tramo="2" asignatura="11" aula="3" profesor="5">
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="15" num_un="31" tramo="12" asignatura="11" aula="3" profesor="5">
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="16" num_un="32" tramo="10" asignatura="11" aula="3" profesor="5">
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="17" num_un="54" tramo="15" asignatura="7" aula="3" profesor="2">
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="18" num_un="55" tramo="16" asignatura="7" aula="3" profesor="2">
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="19" num_un="56" tramo="7" asignatura="7" aula="3" profesor="2">
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="20" num_un="57" tramo="6" asignatura="7" aula="3" profesor="2">
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="21" num_un="58" tramo="23" asignatura="7" aula="3" profesor="2">
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="22" num_un="59" tramo="22" asignatura="7" aula="3" profesor="2">
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="23" num_un="60" tramo="33" asignatura="9" aula="3" profesor="4">
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="24" num_un="61" tramo="31" asignatura="9" aula="3" profesor="4">
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="25" num_un="62" tramo="20" asignatura="9" aula="3" profesor="4">
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="26" num_un="63" tramo="27" asignatura="12" aula="3" profesor="4">
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="27" num_un="64" tramo="28" asignatura="12" aula="3" profesor="4">
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="28" num_un="65" tramo="35" asignatura="12" aula="3" profesor="4">
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="29" num_un="66" tramo="34" asignatura="12" aula="3" profesor="4">
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="30" num_un="77" tramo="21" asignatura="10" aula="3" profesor="4">
+        </ACTIVIDAD>
+      </HORARIO_GRUP>
+      <HORARIO_GRUP hor_num_int_gr="2" tot_un="20" tot_ac="20">
+        <ACTIVIDAD num_act="1" num_un="14" tramo="31" asignatura="15" aula="2" profesor="3">
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="2" num_un="15" tramo="33" asignatura="15" aula="2" profesor="3">
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="3" num_un="16" tramo="10" asignatura="15" aula="2" profesor="3">
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="4" num_un="17" tramo="12" asignatura="15" aula="2" profesor="3">
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="5" num_un="18" tramo="5" asignatura="15" aula="2" profesor="3">
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="6" num_un="49" tramo="29" asignatura="17" aula="2" profesor="8">
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="7" num_un="50" tramo="30" asignatura="17" aula="2" profesor="8">
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="8" num_un="51" tramo="2" asignatura="17" aula="2" profesor="8">
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="9" num_un="52" tramo="3" asignatura="17" aula="2" profesor="8">
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="10" num_un="53" tramo="1" asignatura="17" aula="2" profesor="8">
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="11" num_un="67" tramo="19" asignatura="14" aula="2" profesor="4">
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="12" num_un="68" tramo="8" asignatura="14" aula="2" profesor="4">
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="13" num_un="69" tramo="9" asignatura="14" aula="2" profesor="4">
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="14" num_un="70" tramo="26" asignatura="14" aula="2" profesor="4">
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="15" num_un="71" tramo="23" asignatura="16" aula="2" profesor="7">
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="16" num_un="72" tramo="22" asignatura="16" aula="2" profesor="7">
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="17" num_un="73" tramo="15" asignatura="16" aula="2" profesor="7">
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="18" num_un="74" tramo="16" asignatura="18" aula="2" profesor="7">
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="19" num_un="75" tramo="17" asignatura="18" aula="2" profesor="7">
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="20" num_un="76" tramo="24" asignatura="18" aula="2" profesor="7">
+        </ACTIVIDAD>
+      </HORARIO_GRUP>
+      <HORARIO_GRUP hor_num_int_gr="3" tot_un="30" tot_ac="30">
+        <ACTIVIDAD num_act="1" num_un="1" tramo="20" asignatura="1" aula="4" profesor="3">
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="2" num_un="2" tramo="21" asignatura="1" aula="4" profesor="3">
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="3" num_un="3" tramo="27" asignatura="1" aula="4" profesor="3">
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="4" num_un="4" tramo="26" asignatura="1" aula="4" profesor="3">
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="5" num_un="5" tramo="29" asignatura="1" aula="4" profesor="3">
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="6" num_un="6" tramo="30" asignatura="1" aula="4" profesor="3">
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="7" num_un="7" tramo="34" asignatura="2" aula="4" profesor="3">
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="8" num_un="8" tramo="35" asignatura="2" aula="4" profesor="3">
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="9" num_un="9" tramo="28" asignatura="2" aula="4" profesor="3">
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="10" num_un="10" tramo="6" asignatura="20" aula="4" profesor="3">
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="11" num_un="11" tramo="7" asignatura="20" aula="4" profesor="3">
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="12" num_un="33" tramo="23" asignatura="5" aula="4" profesor="5">
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="13" num_un="34" tramo="22" asignatura="5" aula="4" profesor="5">
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="14" num_un="35" tramo="16" asignatura="5" aula="4" profesor="5">
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="15" num_un="36" tramo="15" asignatura="5" aula="4" profesor="5">
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="16" num_un="37" tramo="13" asignatura="3" aula="4" profesor="4">
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="17" num_un="38" tramo="14" asignatura="3" aula="4" profesor="4">
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="18" num_un="39" tramo="12" asignatura="3" aula="4" profesor="4">
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="19" num_un="40" tramo="3" asignatura="3" aula="4" profesor="4">
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="20" num_un="41" tramo="1" asignatura="3" aula="4" profesor="4">
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="21" num_un="42" tramo="2" asignatura="3" aula="4" profesor="4">
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="22" num_un="43" tramo="5" asignatura="4" aula="4" profesor="6">
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="23" num_un="44" tramo="31" asignatura="19" aula="4" profesor="6">
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="24" num_un="45" tramo="33" asignatura="19" aula="4" profesor="6">
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="25" num_un="46" tramo="17" asignatura="19" aula="4" profesor="6">
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="26" num_un="47" tramo="19" asignatura="19" aula="4" profesor="6">
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="27" num_un="48" tramo="24" asignatura="19" aula="4" profesor="6">
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="28" num_un="78" tramo="8" asignatura="6" aula="4" profesor="9">
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="29" num_un="79" tramo="9" asignatura="6" aula="4" profesor="9">
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="30" num_un="80" tramo="10" asignatura="6" aula="4" profesor="9">
+        </ACTIVIDAD>
+      </HORARIO_GRUP>
+    </HORARIOS_GRUPOS>
+    <HORARIOS_AULAS>
+      <HORARIO_AULA hor_num_int_au="2" tot_un="20" tot_ac="20">
+        <ACTIVIDAD num_act="1" num_un="14" tramo="31" asignatura="15" profesor="3">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="2" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="2" num_un="15" tramo="33" asignatura="15" profesor="3">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="2" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="3" num_un="16" tramo="10" asignatura="15" profesor="3">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="2" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="4" num_un="17" tramo="12" asignatura="15" profesor="3">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="2" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="5" num_un="18" tramo="5" asignatura="15" profesor="3">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="2" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="6" num_un="49" tramo="29" asignatura="17" profesor="8">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="2" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="7" num_un="50" tramo="30" asignatura="17" profesor="8">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="2" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="8" num_un="51" tramo="2" asignatura="17" profesor="8">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="2" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="9" num_un="52" tramo="3" asignatura="17" profesor="8">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="2" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="10" num_un="53" tramo="1" asignatura="17" profesor="8">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="2" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="11" num_un="67" tramo="19" asignatura="14" profesor="4">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="2" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="12" num_un="68" tramo="8" asignatura="14" profesor="4">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="2" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="13" num_un="69" tramo="9" asignatura="14" profesor="4">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="2" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="14" num_un="70" tramo="26" asignatura="14" profesor="4">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="2" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="15" num_un="71" tramo="23" asignatura="16" profesor="7">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="2" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="16" num_un="72" tramo="22" asignatura="16" profesor="7">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="2" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="17" num_un="73" tramo="15" asignatura="16" profesor="7">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="2" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="18" num_un="74" tramo="16" asignatura="18" profesor="7">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="2" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="19" num_un="75" tramo="17" asignatura="18" profesor="7">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="2" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="20" num_un="76" tramo="24" asignatura="18" profesor="7">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="2" />
+        </ACTIVIDAD>
+      </HORARIO_AULA>
+      <HORARIO_AULA hor_num_int_au="3" tot_un="30" tot_ac="30">
+        <ACTIVIDAD num_act="1" num_un="12" tramo="13" asignatura="13" profesor="3">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="2" num_un="13" tramo="14" asignatura="13" profesor="3">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="3" num_un="19" tramo="17" asignatura="8" profesor="5">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="4" num_un="20" tramo="19" asignatura="8" profesor="5">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="5" num_un="21" tramo="9" asignatura="8" profesor="5">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="6" num_un="22" tramo="8" asignatura="8" profesor="5">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="7" num_un="23" tramo="26" asignatura="8" profesor="5">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="8" num_un="24" tramo="24" asignatura="8" profesor="5">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="9" num_un="25" tramo="3" asignatura="8" profesor="5">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="10" num_un="26" tramo="5" asignatura="8" profesor="5">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="11" num_un="27" tramo="29" asignatura="11" profesor="5">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="12" num_un="28" tramo="30" asignatura="11" profesor="5">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="13" num_un="29" tramo="1" asignatura="11" profesor="5">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="14" num_un="30" tramo="2" asignatura="11" profesor="5">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="15" num_un="31" tramo="12" asignatura="11" profesor="5">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="16" num_un="32" tramo="10" asignatura="11" profesor="5">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="17" num_un="54" tramo="15" asignatura="7" profesor="2">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="18" num_un="55" tramo="16" asignatura="7" profesor="2">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="19" num_un="56" tramo="7" asignatura="7" profesor="2">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="20" num_un="57" tramo="6" asignatura="7" profesor="2">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="21" num_un="58" tramo="23" asignatura="7" profesor="2">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="22" num_un="59" tramo="22" asignatura="7" profesor="2">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="23" num_un="60" tramo="33" asignatura="9" profesor="4">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="24" num_un="61" tramo="31" asignatura="9" profesor="4">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="25" num_un="62" tramo="20" asignatura="9" profesor="4">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="26" num_un="63" tramo="27" asignatura="12" profesor="4">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="27" num_un="64" tramo="28" asignatura="12" profesor="4">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="28" num_un="65" tramo="35" asignatura="12" profesor="4">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="29" num_un="66" tramo="34" asignatura="12" profesor="4">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="30" num_un="77" tramo="21" asignatura="10" profesor="4">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+      </HORARIO_AULA>
+      <HORARIO_AULA hor_num_int_au="4" tot_un="30" tot_ac="30">
+        <ACTIVIDAD num_act="1" num_un="1" tramo="20" asignatura="1" profesor="3">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="2" num_un="2" tramo="21" asignatura="1" profesor="3">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="3" num_un="3" tramo="27" asignatura="1" profesor="3">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="4" num_un="4" tramo="26" asignatura="1" profesor="3">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="5" num_un="5" tramo="29" asignatura="1" profesor="3">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="6" num_un="6" tramo="30" asignatura="1" profesor="3">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="7" num_un="7" tramo="34" asignatura="2" profesor="3">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="8" num_un="8" tramo="35" asignatura="2" profesor="3">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="9" num_un="9" tramo="28" asignatura="2" profesor="3">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="10" num_un="10" tramo="6" asignatura="20" profesor="3">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="11" num_un="11" tramo="7" asignatura="20" profesor="3">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="12" num_un="33" tramo="23" asignatura="5" profesor="5">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="13" num_un="34" tramo="22" asignatura="5" profesor="5">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="14" num_un="35" tramo="16" asignatura="5" profesor="5">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="15" num_un="36" tramo="15" asignatura="5" profesor="5">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="16" num_un="37" tramo="13" asignatura="3" profesor="4">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="17" num_un="38" tramo="14" asignatura="3" profesor="4">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="18" num_un="39" tramo="12" asignatura="3" profesor="4">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="19" num_un="40" tramo="3" asignatura="3" profesor="4">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="20" num_un="41" tramo="1" asignatura="3" profesor="4">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="21" num_un="42" tramo="2" asignatura="3" profesor="4">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="22" num_un="43" tramo="5" asignatura="4" profesor="6">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="23" num_un="44" tramo="31" asignatura="19" profesor="6">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="24" num_un="45" tramo="33" asignatura="19" profesor="6">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="25" num_un="46" tramo="17" asignatura="19" profesor="6">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="26" num_un="47" tramo="19" asignatura="19" profesor="6">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="27" num_un="48" tramo="24" asignatura="19" profesor="6">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="28" num_un="78" tramo="8" asignatura="6" profesor="9">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="29" num_un="79" tramo="9" asignatura="6" profesor="9">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="30" num_un="80" tramo="10" asignatura="6" profesor="9">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+      </HORARIO_AULA>
+    </HORARIOS_AULAS>
+    <HORARIOS_PROFESORES>
+      <HORARIO_PROF hor_num_int_pr="2" tot_un="6" tot_ac="6">
+        <ACTIVIDAD num_act="1" num_un="54" tramo="15" asignatura="7" aula="3">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="2" num_un="55" tramo="16" asignatura="7" aula="3">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="3" num_un="56" tramo="7" asignatura="7" aula="3">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="4" num_un="57" tramo="6" asignatura="7" aula="3">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="5" num_un="58" tramo="23" asignatura="7" aula="3">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="6" num_un="59" tramo="22" asignatura="7" aula="3">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+      </HORARIO_PROF>
+      <HORARIO_PROF hor_num_int_pr="3" tot_un="18" tot_ac="18">
+        <ACTIVIDAD num_act="1" num_un="1" tramo="20" asignatura="1" aula="4">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="2" num_un="2" tramo="21" asignatura="1" aula="4">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="3" num_un="3" tramo="27" asignatura="1" aula="4">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="4" num_un="4" tramo="26" asignatura="1" aula="4">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="5" num_un="5" tramo="29" asignatura="1" aula="4">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="6" num_un="6" tramo="30" asignatura="1" aula="4">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="7" num_un="7" tramo="34" asignatura="2" aula="4">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="8" num_un="8" tramo="35" asignatura="2" aula="4">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="9" num_un="9" tramo="28" asignatura="2" aula="4">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="10" num_un="10" tramo="6" asignatura="20" aula="4">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="11" num_un="11" tramo="7" asignatura="20" aula="4">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="12" num_un="12" tramo="13" asignatura="13" aula="3">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="13" num_un="13" tramo="14" asignatura="13" aula="3">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="14" num_un="14" tramo="31" asignatura="15" aula="2">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="2" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="15" num_un="15" tramo="33" asignatura="15" aula="2">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="2" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="16" num_un="16" tramo="10" asignatura="15" aula="2">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="2" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="17" num_un="17" tramo="12" asignatura="15" aula="2">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="2" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="18" num_un="18" tramo="5" asignatura="15" aula="2">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="2" />
+        </ACTIVIDAD>
+      </HORARIO_PROF>
+      <HORARIO_PROF hor_num_int_pr="4" tot_un="18" tot_ac="18">
+        <ACTIVIDAD num_act="1" num_un="37" tramo="13" asignatura="3" aula="4">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="2" num_un="38" tramo="14" asignatura="3" aula="4">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="3" num_un="39" tramo="12" asignatura="3" aula="4">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="4" num_un="40" tramo="3" asignatura="3" aula="4">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="5" num_un="41" tramo="1" asignatura="3" aula="4">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="6" num_un="42" tramo="2" asignatura="3" aula="4">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="7" num_un="60" tramo="33" asignatura="9" aula="3">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="8" num_un="61" tramo="31" asignatura="9" aula="3">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="9" num_un="62" tramo="20" asignatura="9" aula="3">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="10" num_un="63" tramo="27" asignatura="12" aula="3">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="11" num_un="64" tramo="28" asignatura="12" aula="3">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="12" num_un="65" tramo="35" asignatura="12" aula="3">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="13" num_un="66" tramo="34" asignatura="12" aula="3">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="14" num_un="67" tramo="19" asignatura="14" aula="2">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="2" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="15" num_un="68" tramo="8" asignatura="14" aula="2">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="2" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="16" num_un="69" tramo="9" asignatura="14" aula="2">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="2" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="17" num_un="70" tramo="26" asignatura="14" aula="2">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="2" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="18" num_un="77" tramo="21" asignatura="10" aula="3">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+      </HORARIO_PROF>
+      <HORARIO_PROF hor_num_int_pr="5" tot_un="18" tot_ac="18">
+        <ACTIVIDAD num_act="1" num_un="19" tramo="17" asignatura="8" aula="3">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="2" num_un="20" tramo="19" asignatura="8" aula="3">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="3" num_un="21" tramo="9" asignatura="8" aula="3">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="4" num_un="22" tramo="8" asignatura="8" aula="3">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="5" num_un="23" tramo="26" asignatura="8" aula="3">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="6" num_un="24" tramo="24" asignatura="8" aula="3">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="7" num_un="25" tramo="3" asignatura="8" aula="3">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="8" num_un="26" tramo="5" asignatura="8" aula="3">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="9" num_un="27" tramo="29" asignatura="11" aula="3">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="10" num_un="28" tramo="30" asignatura="11" aula="3">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="11" num_un="29" tramo="1" asignatura="11" aula="3">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="12" num_un="30" tramo="2" asignatura="11" aula="3">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="13" num_un="31" tramo="12" asignatura="11" aula="3">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="14" num_un="32" tramo="10" asignatura="11" aula="3">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="1" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="15" num_un="33" tramo="23" asignatura="5" aula="4">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="16" num_un="34" tramo="22" asignatura="5" aula="4">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="17" num_un="35" tramo="16" asignatura="5" aula="4">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="18" num_un="36" tramo="15" asignatura="5" aula="4">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+      </HORARIO_PROF>
+      <HORARIO_PROF hor_num_int_pr="6" tot_un="6" tot_ac="6">
+        <ACTIVIDAD num_act="1" num_un="43" tramo="5" asignatura="4" aula="4">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="2" num_un="44" tramo="31" asignatura="19" aula="4">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="3" num_un="45" tramo="33" asignatura="19" aula="4">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="4" num_un="46" tramo="17" asignatura="19" aula="4">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="5" num_un="47" tramo="19" asignatura="19" aula="4">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="6" num_un="48" tramo="24" asignatura="19" aula="4">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+      </HORARIO_PROF>
+      <HORARIO_PROF hor_num_int_pr="7" tot_un="6" tot_ac="6">
+        <ACTIVIDAD num_act="1" num_un="71" tramo="23" asignatura="16" aula="2">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="2" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="2" num_un="72" tramo="22" asignatura="16" aula="2">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="2" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="3" num_un="73" tramo="15" asignatura="16" aula="2">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="2" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="4" num_un="74" tramo="16" asignatura="18" aula="2">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="2" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="5" num_un="75" tramo="17" asignatura="18" aula="2">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="2" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="6" num_un="76" tramo="24" asignatura="18" aula="2">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="2" />
+        </ACTIVIDAD>
+      </HORARIO_PROF>
+      <HORARIO_PROF hor_num_int_pr="8" tot_un="5" tot_ac="5">
+        <ACTIVIDAD num_act="1" num_un="49" tramo="29" asignatura="17" aula="2">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="2" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="2" num_un="50" tramo="30" asignatura="17" aula="2">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="2" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="3" num_un="51" tramo="2" asignatura="17" aula="2">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="2" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="4" num_un="52" tramo="3" asignatura="17" aula="2">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="2" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="5" num_un="53" tramo="1" asignatura="17" aula="2">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="2" />
+        </ACTIVIDAD>
+      </HORARIO_PROF>
+      <HORARIO_PROF hor_num_int_pr="9" tot_un="3" tot_ac="3">
+        <ACTIVIDAD num_act="1" num_un="78" tramo="8" asignatura="6" aula="4">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="2" num_un="79" tramo="9" asignatura="6" aula="4">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+        <ACTIVIDAD num_act="3" num_un="80" tramo="10" asignatura="6" aula="4">
+          <GRUPOS_ACTIVIDAD tot_gr_act="1" grupo_1="3" />
+        </ACTIVIDAD>
+      </HORARIO_PROF>
+    </HORARIOS_PROFESORES>
+  </HORARIOS>
+</CENTRO>
