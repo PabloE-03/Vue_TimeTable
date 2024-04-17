@@ -53,6 +53,7 @@ import es.iesjandula.reaktor.timetable_server.models.parse.Actividad;
 import es.iesjandula.reaktor.timetable_server.models.parse.Asignatura;
 import es.iesjandula.reaktor.timetable_server.models.parse.Asignaturas;
 import es.iesjandula.reaktor.timetable_server.models.parse.Aula;
+import es.iesjandula.reaktor.timetable_server.models.parse.AulaPlano;
 import es.iesjandula.reaktor.timetable_server.models.parse.Aulas;
 import es.iesjandula.reaktor.timetable_server.models.parse.Centro;
 import es.iesjandula.reaktor.timetable_server.models.parse.Datos;
@@ -509,7 +510,7 @@ public class TimetableRest
 			//Centro centro = (Centro) session.getAttribute("storedCentro");
 			//LIST TO SAVE THE TEACHERS
 			List<Profesor> profesores = this.centroPdfs.getDatos().getProfesores().getProfesor();
-			return ResponseEntity.ok().body(profesores);    	
+			return ResponseEntity.ok().body(this.util.ordenarLista(profesores));   	
 		}
 		catch (Exception exception)
 		{     	
@@ -536,7 +537,7 @@ public class TimetableRest
 				return ResponseEntity.status(404).body(error.toMap());
 			}
 			
-			return ResponseEntity.ok().body(this.util.ordenarStudents(this.students));
+			return ResponseEntity.ok().body(this.util.ordenarLista(this.students));
 		}
 		catch (Exception exception)
 		{
@@ -1246,6 +1247,17 @@ public class TimetableRest
 													break;
 												}
 											}
+											
+											// --- ASIGNATURA ---
+											Asignatura asignatura = null;
+											for (Asignatura asig : this.centroPdfs.getDatos().getAsignaturas().getAsignatura())
+											{
+												// --- EQUAL ASIGNATURA ID --
+												if (asig.getNumIntAs().trim().equalsIgnoreCase(profActividad.getAsignatura().trim()))
+												{
+													asignatura = asig;
+												}
+											}
 
 											if (profAula != null)
 											{
@@ -1274,9 +1286,12 @@ public class TimetableRest
 													}
 												}
 
+												Map<String,Object> mapa = new HashMap<String, Object>();
 												Classroom classroom = new Classroom(numeroAula, plantaNumero,profAula.getNombre());
-												log.info(classroom.toString());
-												return ResponseEntity.ok().body(classroom);
+												mapa.put("classroom", classroom);
+												mapa.put("subject", asignatura);
+												log.info(mapa.toString());
+												return ResponseEntity.ok().body(mapa);
 											}
 										}
 
@@ -1405,6 +1420,17 @@ public class TimetableRest
 													break;
 												}
 											}
+											
+											// --- ASIGNATURA ---
+											Asignatura asignatura = null;
+											for (Asignatura asig : this.centroPdfs.getDatos().getAsignaturas().getAsignatura())
+											{
+												// --- EQUAL ASIGNATURA ID --
+												if (asig.getNumIntAs().trim().equalsIgnoreCase(profActividad.getAsignatura().trim()))
+												{
+													asignatura = asig;
+												}
+											}
 
 											if (profAula != null)
 											{
@@ -1432,10 +1458,13 @@ public class TimetableRest
 														numeroAula = nombreAula;
 													}
 												}
-
+												Map<String,Object> mapa = new HashMap<String,Object>();
 												Classroom classroom = new Classroom(numeroAula,plantaNumero,profAula.getNombre());
-												log.info(classroom.toString());
-												return ResponseEntity.ok().body(classroom);
+												mapa.put("classroom", classroom);
+												mapa.put("subject", asignatura);
+												log.info(mapa.toString());
+												
+												return ResponseEntity.ok().body(mapa);
 											}
 										}
 
@@ -3560,21 +3589,8 @@ public class TimetableRest
 			List<Grupo> grupos = new LinkedList<Grupo>();
 			
 			grupos = this.centroPdfs.getDatos().getGrupos().getGrupo();
-			List<Aula> aulas = new LinkedList<Aula>();
-			
-		    aulas = this.centroPdfs.getDatos().getAulas().getAula();	
 		    
-		    if(aulas.isEmpty())
-		    {
-				String error = "Los grupos no se han cargado";
-				HorariosError horariosError = new HorariosError(400, error);
-				log.error(error);
-				return ResponseEntity.status(400).body(horariosError);
-		    }
-		    
-			//return ResponseEntity.ok().body(this.util.transformarAula(aulas));
-		    
-		    return ResponseEntity.ok().body(grupos);
+		    return ResponseEntity.ok().body(this.util.ordenarLista(grupos));
 		}
 		catch (Exception exception)
 		{
@@ -3602,6 +3618,26 @@ public class TimetableRest
 		{
 			log.error("El fichero introducido no contiene los datos de los alumnos bien formados",exception);
 			return ResponseEntity.status(406).body(exception.toMap());
+		}
+		catch(Exception exception)
+		{
+			log.error("Error de servidor",exception);
+			return ResponseEntity.status(500).body("Error de servidor "+exception.getStackTrace());
+		}
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/get/classroom-planos",produces = "application/json")
+	public ResponseEntity<?> getAllClassroom(@RequestParam(name = "planta",required = true)String planta)
+	{ 
+		try
+		{
+			List<AulaPlano> aulas = this.util.rellenarAulasPlano();
+			return ResponseEntity.ok().body(this.util.buscarPorPlanta(planta,aulas));	
+		}
+		catch(HorariosError exception)
+		{
+			log.error("Error al filtrar las aulas",exception);
+			return ResponseEntity.status(exception.getCode()).body(exception.toMap());
 		}
 		catch(Exception exception)
 		{
