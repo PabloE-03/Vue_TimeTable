@@ -22,6 +22,7 @@ import es.iesjandula.reaktor.timetable_server.models.Student;
 import es.iesjandula.reaktor.timetable_server.models.User;
 import es.iesjandula.reaktor.timetable_server.models.Visitas;
 import es.iesjandula.reaktor.timetable_server.models.parse.Aula;
+import es.iesjandula.reaktor.timetable_server.models.parse.AulaPlano;
 
 public class TimeTableUtils 
 {
@@ -459,6 +460,7 @@ public class TimeTableUtils
 	 * Metodo que ordena todos los estudiantes por su apellido
 	 * @param students
 	 * @return lista de estudiantes ordenados
+	 * @deprecated Por ahora se esta usando el metodo {@link #ordenarLista(List)} el cual mas adelante sera el principal
 	 */
 	public Student [] ordenarStudents (List<Student> students)
 	{
@@ -473,6 +475,28 @@ public class TimeTableUtils
 		Arrays.sort(sortStudents);
 		
 		return sortStudents;
+	}
+	
+	/**
+	 * Metodo que ordena una lista generica pasandola a array y ordenandola desde ahi
+	 * @param <T> generico que tomara como valor la clase profesores y estudiante
+	 * @param objectList
+	 * @return array ordenado
+	 */
+	public <T> Object [] ordenarLista(List<T> objectList)
+	{
+		Object [] arraySorted = new Object[0];
+		
+		for(int i=0;i<objectList.size();i++)
+		{
+			arraySorted = Arrays.copyOf(arraySorted, i+1);
+			arraySorted[i] = objectList.get(i);
+		}
+		
+		
+		Arrays.sort(arraySorted);
+		
+		return arraySorted;
 	}
 	
 	/**
@@ -734,6 +758,94 @@ public class TimeTableUtils
 		}
 		
 		return newHour;
+	}
+	
+	/**
+	 * Metodo que devuelve todas las aulas para la parte de planos en
+	 * el frontend
+	 * <br>
+	 * <br>
+	 * AVISO: No alterar el orden en el que se añaden las aulas
+	 * ya que luego en el frontend saldran datos erroneos
+	 * @return lista de aulas para los planos en el front
+	 */
+	public List<AulaPlano> rellenarAulasPlano()
+	{
+		List<AulaPlano> aulas = new LinkedList<AulaPlano>();
+		aulas.add(new AulaPlano(6,7,1.6,0,14,"PLANTA BAJA",new Aula("53","2GUIA","2GUIA")));
+		aulas.add(new AulaPlano(6,7,1.6,0,21,"PLANTA BAJA",new Aula("51","GUI1A","GUIA 1A")));
+		aulas.add(new AulaPlano(7.5,6.5,1.6,0,28,"PLANTA BAJA",new Aula("52","GUI1B","GUIA 1B")));
+		aulas.add(new AulaPlano(5,18.4,15,0,12,"PLANTA BAJA",new Aula("50","Patio","Patio Deportes")));
+		aulas.add(new AulaPlano(6,7,1.6,0,21,"PLANTA BAJA",new Aula("51","GUI1A","GUIA 1A")));
+		aulas.add(new AulaPlano(5,8.1,12.8,0,44.2,"PLANTA BAJA",new Aula("43","0.11","1BACH-A")));
+		aulas.add(new AulaPlano(5,11.2,12.8,0,52.8,"PLANTA BAJA",new Aula("42","0.9","Aula de Dibujo")));
+		aulas.add(new AulaPlano(4.8,9,13.5,12.8,0,"PLANTA BAJA",new Aula("4","0.5","1DAM/DAW")));
+		aulas.add(new AulaPlano(5,6.9,18.6,15,0,"PLANTA BAJA",new Aula("35","0.7","2DAM/2DAW")));
+		aulas.add(new AulaPlano(4.8,3.6,30.82,13.8,0,"PLANTA BAJA",new Aula("2","0.3","2FPB")));
+		aulas.add(new AulaPlano(5,5.5,30.8,17.7,0,"PLANTA BAJA",new Aula("44","0.1","1FPB")));
+		aulas.add(new AulaPlano(6,7,1.6,0,21,"PLANTA BAJA",new Aula("51","GUI1A","GUIA 1A")));
+		aulas.add(new AulaPlano(6.5,4.5,36.5,0,12,"PLANTA BAJA",new Aula("46","0.2A","3DIVER")));
+		aulas.add(new AulaPlano(6.5,4.5,36.5,0,16.7,"PLANTA BAJA",new Aula("49","0.2B","4DIVER")));
+		aulas.add(new AulaPlano(12.5,11.3,5,4.9,0,"PRIMERA PLANTA",new Aula("17","1.11","Aula Taller Tecnología")));
+		aulas.add(new AulaPlano(6,11.6,26.5,6.1,0,"PRIMERA PLANTA",new Aula("18","1.9","1ESOC")));
+		aulas.add(new AulaPlano(6,11.6,26.5,18.3,0,"PRIMERA PLANTA",new Aula("15","1.7","1ESOB")));
+		aulas.add(new AulaPlano(6,11.6,26.5,29.75,0,"PRIMERA PLANTA",new Aula("14","1.5","1ESOA")));
+		aulas.add(new AulaPlano(6,11.6,26.5,41.3,0,"PRIMERA PLANTA",new Aula("13","1.3","3ESO_BDIVER")));
+		aulas.add(new AulaPlano(6.4,11.6,18,41.2,0,"PRIMERA PLANTA",new Aula("16","1.17","3ESO_BDIVER")));
+		aulas.add(new AulaPlano(6.4,11.6,18,29.7,0,"PRIMERA PLANTA",new Aula("36","1.15","3ESOA")));
+		aulas.add(new AulaPlano(6.4,11.6,18,18.2,0,"PRIMERA PLANTA",new Aula("19","1.13","1MECA")));
+		aulas.add(new AulaPlano(6.2,11.5,27,0,24.6,"PRIMERA PLANTA",new Aula("10","1.2","4ESOA")));
+		aulas.add(new AulaPlano(6.2,11.5,27,0,12.9,"PRIMERA PLANTA",new Aula("9","1.4","DESDOBLES")));
+		aulas.add(new AulaPlano(6.2,11.5,27,0,1.3,"PRIMERA PLANTA",new Aula("8","1.6","1BACHC")));
+		aulas.add(new AulaPlano(6,11.3,35.5,0,1.3,"PRIMERA PLANTA",new Aula("11","1.8","LABORATORIO DE CIENCIAS")));
+		aulas.add(new AulaPlano(6,11.3,35.5,0,18.7,"PRIMERA PLANTA",new Aula("12","1.12","1BACH-B")));
+		aulas.add(new AulaPlano(6.8,11.3,4,4.5,0,"SEGUNDA PLANTA",new Aula("27","2.11","INFORMATICA 1")));
+		aulas.add(new AulaPlano(6,8.9,11,7,0,"SEGUNDA PLANTA",new Aula("30","2.13","INFORMATICA 2")));
+		aulas.add(new AulaPlano(6,11.7,25.8,5.9,0,"SEGUNDA PLANTA",new Aula("32","2.9","2ESOC")));
+		aulas.add(new AulaPlano(6,11.1,25.8,18,0,"SEGUNDA PLANTA",new Aula("31","2.7","2ESOB")));
+		aulas.add(new AulaPlano(6,11.2,25.8,29.45,0,"SEGUNDA PLANTA",new Aula("28","2.5","2ESOA")));
+		aulas.add(new AulaPlano(6,11.1,25.8,18,0,"SEGUNDA PLANTA",new Aula("31","2.7","2ESOB")));
+		aulas.add(new AulaPlano(6,11.6,25.8,41,0,"SEGUNDA PLANTA",new Aula("26","2.3","4ESOB_DIVER")));
+		aulas.add(new AulaPlano(6,5.5,25.8,52.9,0,"SEGUNDA PLANTA",new Aula("25","2.1","2ESOA-AMB")));
+		aulas.add(new AulaPlano(6,4,17.2,41,0,"SEGUNDA PLANTA",new Aula("40","2.21","REOLIGIÓN EVANGÉLICA Y VE")));
+		aulas.add(new AulaPlano(6,8.7,17.2,41,0,"SEGUNDA PLANTA",new Aula("29","2.19","DESDOBLES")));
+		aulas.add(new AulaPlano(6,11.3,17.2,29.4,0,"SEGUNDA PLANTA",new Aula("39","2.17","4ESOC")));
+		aulas.add(new AulaPlano(6,11.2,17.2,18,0,"SEGUNDA PLANTA",new Aula("3","2.15","4ESOD")));
+		aulas.add(new AulaPlano(6.2,11.5,26.2,0,24.8,"SEGUNDA PLANTA",new Aula("31","2.2","DESDOBLES")));
+		aulas.add(new AulaPlano(6.2,11.5,26.2,0,13,"SEGUNDA PLANTA",new Aula("21","2.4","2BACH-C")));
+		aulas.add(new AulaPlano(6.2,11.5,26.2,0,1.5,"SEGUNDA PLANTA",new Aula("22","2.6","2BACH-A")));
+		aulas.add(new AulaPlano(6.1,11.3,34.6,0,1.5,"SEGUNDA PLANTA",new Aula("23","2.8","2BACH-B")));
+		aulas.add(new AulaPlano(6.1,11.3,34.6,0,18.9,"SEGUNDA PLANTA",new Aula("24","2.12","Laboratorio FyQ - Desdbl4ESOB")));
+
+		return aulas;
+	}
+	
+	/**
+	 * Metodo que filtra las aulas para los planos del front por su planta
+	 * devolviendo una lista de las mismas filtradas
+	 * @param planta
+	 * @param aulas
+	 * @return lista de aulas filtradas
+	 * @throws HorariosError
+	 */
+	public List<AulaPlano> buscarPorPlanta(String planta,List<AulaPlano> aulas) throws HorariosError
+	{ 
+		List<AulaPlano> aulasEncontradas = new LinkedList<AulaPlano>();
+		
+		for(AulaPlano aula:aulas)
+		{
+			if(aula.getPlanta().equals(planta))
+			{
+				aulasEncontradas.add(aula);
+			}
+		}
+		
+		if(aulasEncontradas.isEmpty())
+		{
+			throw new HorariosError(404,"La planta introducida es erronea, su valor debe de se PLANTA BAJA, PRIMERA PLANTA, SEGUNDA PLANTA, en literal");
+		}
+		
+		return aulasEncontradas;
 	}
 	
 }
