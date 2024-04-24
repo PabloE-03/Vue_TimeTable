@@ -44,6 +44,7 @@ import es.iesjandula.reaktor.timetable_server.models.ApplicationPdf;
 import es.iesjandula.reaktor.timetable_server.models.Classroom;
 import es.iesjandula.reaktor.timetable_server.models.Course;
 import es.iesjandula.reaktor.timetable_server.models.Hour;
+import es.iesjandula.reaktor.timetable_server.models.InfoError;
 import es.iesjandula.reaktor.timetable_server.models.Rol;
 import es.iesjandula.reaktor.timetable_server.models.Student;
 import es.iesjandula.reaktor.timetable_server.models.Teacher;
@@ -99,6 +100,9 @@ public class TimetableRest
 	
 	/**Lista de los planos de las aulas */
 	private List<AulaPlano> aulas;
+	
+	/**Objeto que guarda el error actual de la pagina*/
+	private InfoError infoError;
 	
 	public TimetableRest()
 	{
@@ -3672,4 +3676,42 @@ public class TimetableRest
 			return ResponseEntity.status(500).body("Error de servidor "+exception.getStackTrace());
 		}
 	}
-}
+	
+	@RequestMapping(method = RequestMethod.POST, value = "/send/error-info",consumes = "application/json")
+	public ResponseEntity<?> sendErrorInfo(@RequestBody (required = false)InfoError objectError)
+	{
+		this.infoError = objectError;
+		return ResponseEntity.ok().build();
+	}
+	
+	@RequestMapping(method = RequestMethod.GET,value = "/get/error-info",produces = "application/json")
+	public ResponseEntity<?> getInfoError()
+	{
+		return ResponseEntity.ok().body(this.infoError);
+	}
+	
+	@RequestMapping(method = RequestMethod.GET,value = "/check-data",produces = "application/json")
+	public ResponseEntity<?> checkServerData()
+	{
+		Map<String,String> errorMap = new HashMap<String, String>();
+		if(this.centroPdfs==null)
+		{
+			errorMap.put("error", "Error de datos en general");
+			return ResponseEntity.status(400).body(errorMap);
+		}
+		else if(this.students==null || this.students.isEmpty())
+		{
+			errorMap.put("error", "Error de datos de estudiantes");
+			return ResponseEntity.status(400).body(errorMap);
+		}
+		else if(this.aulas==null || this.students.isEmpty())
+		{
+			errorMap.put("error", "Error de datos de planos");
+			return ResponseEntity.status(400).body(errorMap);
+		}
+		else
+		{
+			return ResponseEntity.ok().body("Todo correcto");
+		}
+	}
+ }
