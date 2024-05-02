@@ -21,8 +21,17 @@ import es.iesjandula.reaktor.timetable_server.models.Classroom;
 import es.iesjandula.reaktor.timetable_server.models.Student;
 import es.iesjandula.reaktor.timetable_server.models.User;
 import es.iesjandula.reaktor.timetable_server.models.Visitas;
+import es.iesjandula.reaktor.timetable_server.models.parse.Actividad;
+import es.iesjandula.reaktor.timetable_server.models.parse.Asignatura;
 import es.iesjandula.reaktor.timetable_server.models.parse.Aula;
 import es.iesjandula.reaktor.timetable_server.models.parse.AulaPlano;
+import es.iesjandula.reaktor.timetable_server.models.parse.Centro;
+import es.iesjandula.reaktor.timetable_server.models.parse.Grupo;
+import es.iesjandula.reaktor.timetable_server.models.parse.GruposActividad;
+import es.iesjandula.reaktor.timetable_server.models.parse.HorarioAula;
+import es.iesjandula.reaktor.timetable_server.models.parse.HorarioProf;
+import es.iesjandula.reaktor.timetable_server.models.parse.Profesor;
+import es.iesjandula.reaktor.timetable_server.models.parse.TimeSlot;
 
 public class TimeTableUtils 
 {
@@ -861,8 +870,318 @@ public class TimeTableUtils
 		return aulasEncontradas;
 	}
 	
+	/**
+	 * Metodo que encuentra un profesor en tiempo real usando el aula seleccionada en los planos
+	 * @param centro
+	 * @param aula
+	 * @return profesor encontrado
+	 * @throws HorariosError
+	 */
+	public Profesor searchTeacherAulaNow(Centro centro, Aula aula) throws HorariosError
+	{
+		Profesor profesor = null;
+		//Identificador del profesor
+		String numeroProfesor = "";
+		TimeOperations timeOp = new TimeOperations();
+		LocalDateTime date = LocalDateTime.now();
+		String actualTime = date.getHour() + ":" + date.getMinute();
+		//Obtenemos el tramo actual
+		TimeSlot tramo = timeOp.gettingTramoActual(centro, actualTime);
+		
+		if(tramo != null)
+		{
+			//Obtenemos la lista de horarios de las aulas
+			List<HorarioAula> horarioAulas = centro.getHorarios().getHorariosAulas().getHorarioAula();
+			
+			for(HorarioAula horario:horarioAulas)
+			{
+				//Buscamos el aula en el horario
+				if(horario.getHorNumIntAu().equals(aula.getNumIntAu()))
+				{
+					//Recorremos las actividades con el aula encontrada
+					for(Actividad act:horario.getActividad())
+					{
+						//Si el tramo del aula encontrada coincide con el tramo actual recogemos el
+						//numero del profesor
+						if(act.getTramo().equalsIgnoreCase(tramo.getNumTr().trim()))
+						{
+							numeroProfesor = act.getProfesor();
+							break;
+						}
+					}
+				}
+			}
+			
+			if(!numeroProfesor.isEmpty())
+			{
+				int index = 0;
+				boolean out = false;
+				List<Profesor> profesores = centro.getDatos().getProfesores().getProfesor();
+				
+				//Buscamos el profesor por su numero
+				while(index<profesores.size() && !out)
+				{
+					Profesor profe = profesores.get(index);
+					if(profe.getNumIntPR().equalsIgnoreCase(numeroProfesor))
+					{
+						profesor = profe;
+						out = true;
+					}
+					index++;
+				}
+			}
+			else
+			{
+				throw new HorariosError(404,"No se ha podido encontrar el profesor en este momento actual");
+			}
+		}
+		else
+		{
+			throw new HorariosError(406,"Se esta buscando un horario fuera dfel horario de trabajo del centro");
+		}
+		
+		return profesor;
+		
+	}
+	
+	/**
+	 * Metodo que encuentra la asignatura que se esta impartiendo a tiempo real usando el aula seleccionada de los planos
+	 * @param centro
+	 * @param profesor
+	 * @return asignatura encontrada
+	 * @throws HorariosError
+	 */
+	public Map<String,Object> searchSubjectAulaNow(Centro centro,Profesor profesor) throws HorariosError
+	{
+		Map<String,Object> asignaturaActividad = new HashMap<String,Object>();
+		Asignatura asignatura = null;
+		String numeroAsignatura = "";
+		TimeOperations timeOp = new TimeOperations();
+		LocalDateTime date = LocalDateTime.now();
+		String actualTime = date.getHour() + ":" + date.getMinute();
+		//Obtenemos el tramo actual
+		TimeSlot tramo = timeOp.gettingTramoActual(centro, actualTime);
+		
+		if(tramo!=null)
+		{
+			//Obtenemos la lista de horarios de los profesores
+			List<HorarioProf> horarioProfesor = centro.getHorarios().getHorariosProfesores().getHorarioProf();
+			
+			for(HorarioProf horario:horarioProfesor)
+			{
+				if(horario.getHorNumIntPR().equalsIgnoreCase(profesor.getNumIntPR().trim()))
+				{
+					//Buscamos la actividad actual en la lista de horarios usando el tramo actual
+					for(Actividad act:horario.getActividad())
+					{
+						if(act.getTramo().trim().equalsIgnoreCase(tramo.getNumTr().trim()))
+						{
+							numeroAsignatura = act.getAsignatura();
+							asignaturaActividad.put("actividad", act);
+							break;
+						}
+					}
+				}
+			}
+			
+			if(!numeroAsignatura.isEmpty())
+			{
+				int index = 0;
+				boolean out = false;
+				List<Asignatura> asignaturas = centro.getDatos().getAsignaturas().getAsignatura();
+				
+				//Buscamos el profesor por su numero
+				while(index<asignaturas.size() && !out)
+				{
+					Asignatura asig = asignaturas.get(index);
+					if(asig.getNumIntAs().equalsIgnoreCase(numeroAsignatura))
+					{
+						asignatura = asig;
+						out = true;
+					}
+					index++;
+				}
+				if(asignatura!=null)
+				{
+					asignaturaActividad.put("asignatura", asignatura);
+				}
+					
+			}
+			else
+			{
+				throw new HorariosError(404,"No se ha podido encontrar la asignatura en este momento actual");
+			}
+		}
+		else
+		{
+			throw new HorariosError(406,"Se esta buscando un horario fuera dfel horario de trabajo del centro");
+		}
+		
+		if(asignaturaActividad.size()<=1)
+		{
+			throw new HorariosError(400,"El conjunto esta incompleto falta una asignatura o actividad por recoger");
+		}
+		
+		return asignaturaActividad;
+	}
+	
+	/**
+	 * Metodo que busca el grupo que se encuentra en el aula seleccionada en los planos
+	 * en tiempo real
+	 * @param centro
+	 * @param actividad
+	 * @return grupo encontrado
+	 */
+	public Grupo searchGroupAulaNow(Centro centro,Actividad actividad)
+	{
+		Grupo grupo = null;
+		String numeroGrupo = "";
+		
+		//Recogemos los grupos que participan en la actividad
+		GruposActividad grupos = actividad.getGruposActividad();
+		
+		//Recogemos el numero de grupo comparandolo con sus valores
+		if(grupos.getGrupo1()!=null)
+		{
+			numeroGrupo = grupos.getGrupo1();
+		}
+		if(grupos.getGrupo2()!=null && numeroGrupo.isEmpty())
+		{
+			numeroGrupo = grupos.getGrupo2();
+		}
+		if(grupos.getGrupo3()!=null && numeroGrupo.isEmpty())
+		{
+			numeroGrupo = grupos.getGrupo3();
+		}
+		if(grupos.getGrupo4()!=null && numeroGrupo.isEmpty())
+		{
+			numeroGrupo = grupos.getGrupo4();
+		}
+		if(grupos.getGrupo5()!=null && numeroGrupo.isEmpty())
+		{
+			numeroGrupo = grupos.getGrupo5();
+		}
+		
+		//Obtenemos todos los grupos
+		List<Grupo> listaGrupos = centro.getDatos().getGrupos().getGrupo();
+		int index = 0;
+		boolean out = false;
+		
+		//Buscamos los grupos usando su numero identificador
+		while(index<listaGrupos.size() && !out)
+		{
+			Grupo grp = listaGrupos.get(index);
+			
+			if(grp.getNumIntGr().equals(numeroGrupo))
+			{
+				grupo = grp;
+				out = true;
+			}
+			
+			index++;
+		}
+		
+		return grupo;
+	}
+	
+	/**
+	 * Metodo que devuelve una lista de alumnis en funcion del grupo seleccionado
+	 * por las aulas de los planos
+	 * @deprecated Los cursos de los alumnos son incorrectos se mantendra deprecado hasta la actualizacion de los mismos 
+	 * @param grupo
+	 * @param alumnos
+	 * @return lista de alumnos por grupo
+	 * @throws HorariosError
+	 */
+	public List<Student> getAlumnosAulaNow(Grupo grupo, List<Student> alumnos) throws HorariosError
+	{
+		//Obtenemos el grado del curso en caso de que este vacio lanzamos un error
+		String grade = getGroupGrade(grupo.getNombre());
+		
+		if(grade.isEmpty())
+		{
+			throw new HorariosError(400,"El curso seleccionado "+grupo.getNombre()+" no coincide con ningun curso de los alumnos");
+		}
+		
+		/* Esta variable sirve para convertir el curso de un grupo al curso de los
+		 * alumnos ya que estos son distintos por ejemplo en bachillerato el grupo
+		 * de los datos del centro es 1º BACH A y en los alumnos 1 BHCS A
+		 */ 
+		String grupoAlumno = this.transformGroup(grupo.getNombre());
+		
+		String letraGrupo = this.getGroupLetter(grupo.getNombre());
+		
+		return null;
+		
+	}
+	
+	/**
+	 * Metodo que recoge el grado del curso, en caso de que no sea 1,2,3,4
+	 * vacia el grado para que en el metodo {@link #getAlumnosAulaNow(Grupo, List)} 
+	 * se lance un error 
+	 * @param group
+	 * @return
+	 */
+	private String getGroupGrade(String group)
+	{
+		String grade = String.valueOf(group.charAt(0));
+		
+		if(!grade.equals("1") && !grade.equals("2") && !grade.equals("3") && !grade.equals("4"))
+		{
+			grade = "";
+		}
+		
+		return grade;
+	}
+	
+	/**
+	 * Metodo que transforma el nombre del curso de los datos del centro
+	 * al nombre del curso de los datos del alumno
+	 * @param group
+	 * @return grupo transformado
+	 */
+	private String transformGroup(String group)
+	{
+		String grupoAlumno = "";
+		//Nombre de bachillerato en alumnos
+		if(group.contains("BACH"))
+		{
+			grupoAlumno = "BHCS";
+		}
+		//Nombre de guia natural en alumnos
+		if(group.contains("GUIA MEDIO NATURAL") || group.contains("CFGM GMNTL"))
+		{
+			grupoAlumno = "GMNTL";
+		}
+		//Nombre de mecatronica en alumnos
+		if(group.contains("MECATRÓNICA INDUSTRIAL"))
+		{
+			grupoAlumno = "MEC";
+		}
+		//Nombre de Formacion Profesional Basica en alumnos
+		if(group.contains("Formación Profesional Básica"))
+		{
+			grupoAlumno = "CFGB";
+		}
+		//Nombre de DAM en alumnos
+		if(group.contains("CFGS DAM"))
+		{
+			grupoAlumno = "DAM";
+		}
+		
+		return grupoAlumno;
+	}
+	
+	private String getGroupLetter(String group)
+	{
+		String letraGrupo = String.valueOf(group.charAt(group.length()));
+		
+		if(!letraGrupo.equals("A") && !letraGrupo.equals("B") && !letraGrupo.equals("C") && !letraGrupo.equals("D"))
+		{
+			letraGrupo = "";
+		}
+		
+		return letraGrupo;
+	}
+	
 }
-
-
-
-

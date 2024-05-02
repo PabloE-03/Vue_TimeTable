@@ -3714,4 +3714,51 @@ public class TimetableRest
 			return ResponseEntity.ok().body("Todo correcto");
 		}
 	}
+	
+ 	@RequestMapping(method = RequestMethod.GET, value = "/get/aula-now", produces = "application/json")
+	public ResponseEntity<?> getCurrentClassroom(@RequestParam(value = "numIntAu")String numIntAu,
+												 @RequestParam(value = "abreviatura")String abreviatura,
+												 @RequestParam(value = "nombre")String nombre)
+	{
+		try
+		{
+			Map<String,Object> infoAula = new HashMap<String,Object>();
+			Aula aula = new Aula(numIntAu,abreviatura,nombre);
+			
+			//Buscamos el aula
+			List<Aula> aulas = this.centroPdfs.getDatos().getAulas().getAula();
+			
+			if(!aulas.contains(aula))
+			{	
+				throw new HorariosError(404,"El aula seleccionada no se encuentra en los datos proporcionados");
+			}
+			
+			//Obtenemos el profesor que se encuentra actualmente en el aula
+			Profesor profesor = this.util.searchTeacherAulaNow(this.centroPdfs, aula);
+			//Obtenemos la asignatura que se imparte actualmente en el aula
+			Map<String,Object> asignaturaActividad = this.util.searchSubjectAulaNow(centroPdfs, profesor);
+			//Sacamos la asignatura del mapa
+			Asignatura asignatura = (Asignatura) asignaturaActividad.get("asignatura");
+			//Sacamos la actividad del mapa
+			Actividad actividad = (Actividad) asignaturaActividad.get("actividad");
+			
+			Grupo grupo = this.util.searchGroupAulaNow(centroPdfs, actividad);
+			
+			infoAula.put("profesor", profesor);
+			infoAula.put("asignatura",asignatura);
+			infoAula.put("grupo", grupo);
+			
+			return ResponseEntity.ok().body(infoAula);
+		}
+		catch(HorariosError exception)
+		{
+			log.error("Error al mostrar la informacion del aula",exception);
+			return ResponseEntity.status(exception.getCode()).body(exception.toMap());
+		}
+		catch(Exception exception)
+		{
+			log.error("Error de servidor",exception);
+			return ResponseEntity.status(500).body("Error de servidor "+exception.getStackTrace());
+		}
+	}
  }
